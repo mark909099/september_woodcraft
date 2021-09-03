@@ -37,15 +37,35 @@ useEffect(() => {
   justifyContent="center"
   alignItems="center"
 >
+
 <Grid item>
 <Fade in={fade} timeout={1000}>
-<Typography>Your login link has expired.</Typography> 
+<Typography style={{color:'red'}}>Error. . .</Typography> 
 </Fade>
 </Grid>
 
 <Grid item>
+<Fade in={fade} timeout={1000}>
+<Typography>Your login link has expired</Typography> 
+</Fade>
+</Grid>
+
+<Grid item>
+<Fade in={fade} timeout={1000}>
+<Typography>OR</Typography> 
+</Fade>
+</Grid>
+
+<Grid item>
+<Fade in={fade} timeout={1000}>
+<Typography>you have entered a wrong email</Typography> 
+</Fade>
+</Grid>
+
+
+<Grid item style={{paddingTop:'1.5rem'}}>
 <Fade in={fade} timeout={3000}>
-<Typography>Send a new login link to your email.</Typography>
+<Typography>Send a new login link to your email and try again.</Typography>
 </Fade>
 </Grid>
 

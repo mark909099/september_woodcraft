@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
 const startFade = true;
 
 const schema = yup.object().shape({
-    email: yup.string().email("Not a valid email adress").required("Enter an email to login passwordless"),
+    email: yup.string().email("Not a valid email adress").required("Enter an email"),
   });
 
 export default function LoginPasswordless() {
@@ -83,7 +83,7 @@ const handleClose = (event, reason) => {
     return (
 <div className={classes.root}>
 
-<form onSubmit={handleSubmit(onSubmit)}>
+<form>
 {/* general grid: A:(input + error.message), B: (submit button) */}
 <Grid
   container
@@ -140,11 +140,14 @@ const handleClose = (event, reason) => {
 </Grid>
 </form>  
 
+
 <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="info">
           Login link sent to email.
         </Alert>
 </Snackbar>
+
+<div style={{width:'100vw', borderBottom:'1px solid black', paddingTop:'3rem'}}></div>
 
 </div>
     )
