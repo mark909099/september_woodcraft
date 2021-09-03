@@ -10,6 +10,7 @@ import { AuthProvider } from './firebase/useAuth';
 import LoginGeneral from './components/login_page/LoginGeneral';
 import LoginPasswordless from './components/login_page/LoginPasswordless';
 import ConfirmPasswordless from './components/login_page/ConfirmPasswordless';
+import Confirmed from './components/login_page/Confirmed';
 
 function App() {
   return (
@@ -25,6 +26,9 @@ function App() {
     </Route>
     <Route exact path="/confirm">
       <ConfirmPasswordless />
+    </Route>
+    <Route exact path="/confirmed">
+      <Confirmed />
     </Route>
   </Switch>
 </Router>

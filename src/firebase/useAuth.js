@@ -59,7 +59,6 @@ const signMagicLink = (email) => {
     // Clear email from storage.
     window.localStorage.removeItem('emailForSignIn');
     // You can access the new user via result.user
-    setUser(result.user);
   })
   .catch((error) => {
     // Some error occurred, you can inspect the code: error.code
@@ -96,35 +95,31 @@ const logout = () => {
 }
 
 
-useEffect(() => {
-  const unsubscribe = onAuthStateChanged(auth, (user1) => {
-      
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
-        setUser(user1);
-        // setIsAuthenticating(false);
-        });
-
-        return () => unsubscribe();
-   }, []);
-
 // useEffect(() => {
 //   const unsubscribe = onAuthStateChanged(auth, (user1) => {
-//     if (user1) {
-//       setUser(user1);
-//     setIsAuthenticating(false);
-//     // User is signed in, see docs for a list of available properties
-//     // https://firebase.google.com/docs/reference/js/firebase.User
-//     } else {
-//       // User is signed out
-//     }
-//     });
-//       return () => unsubscribe();
+      
+//         // User is signed in, see docs for a list of available properties
+//         // https://firebase.google.com/docs/reference/js/firebase.User
+//         setUser(user1);
+//         // setIsAuthenticating(false);
+//         });
+
+//         return () => unsubscribe();
 //    }, []);
+
+useEffect(() => {
+  const unsubscribe = onAuthStateChanged(auth, (user1) => {
+    // User is signed in, see docs for a list of available properties
+          // https://firebase.google.com/docs/reference/js/firebase.User
+          setUser(user1);
+          setIsAuthenticating(false);
+          });
+
+          return () => unsubscribe();
+     }, []);
 
 const values = {
   user,
-  isAuthenticating,
   sendMagicLink,
   signMagicLink,
   signGoogle,
@@ -133,7 +128,7 @@ const values = {
 
 return (
   <AuthContext.Provider value={values}>
-      {children}
+      {!isAuthenticating && children}
   </AuthContext.Provider>
 )
 

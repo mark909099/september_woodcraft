@@ -14,16 +14,16 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default function ConfirmPasswordless() {
 // const classes = useStyles();
-const {handleSubmit, control, register} = useForm();
+const {handleSubmit, control, formState: { errors }} = useForm();
 const {signMagicLink} = useAuth();
-const location = useLocation();
 const history = useHistory();
 const [loading, setLoading] = useState(false);
 
 const onSubmit = async (data) => {
     try {
-        await signMagicLink(data.email, location.search)
-        history.push('/')
+        setLoading(true);
+        await signMagicLink(data.email);
+        history.push('/confirmed');
     } catch(err) {
         console.log(err)
     }
@@ -46,8 +46,8 @@ const onSubmit = async (data) => {
 <Button
     variant="outlined"
     onClick={handleSubmit(onSubmit)}
-    disabled={loading}>
-    {loading ? <CircularProgress /> : "Send"}
+    >
+    {loading ? <CircularProgress /> : "Send1"}
         
     </Button>
 
