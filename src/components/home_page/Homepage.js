@@ -4,6 +4,9 @@ import {
      Typography,
      } from '@material-ui/core';
 import { useAuth } from '../../firebase/useAuth';
+import HomeHeader from './HomeHeader';
+import { Fade, Rotate } from 'react-reveal';
+
 
 export default function Homepage() {
 const { user } = useAuth()
@@ -12,10 +15,12 @@ const { user } = useAuth()
 {user?
 <div> 
 <NavbarLogout />
+<h1>lorem ipsum</h1>
 </div>
 :
 <div>
 <NavbarLogin />
+<HomeHeader />
 </div>
 }
      
