@@ -11,6 +11,9 @@ export const theme = createTheme({
     },
     typography: {
         fontFamily: "Arial",
+        button: {
+            textTransform: 'none',
+        },
     },
     
 })

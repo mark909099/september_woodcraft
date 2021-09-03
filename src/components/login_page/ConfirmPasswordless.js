@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useForm, Controller } from 'react-hook-form';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useForm, Controller} from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
 import { useAuth } from '../../firebase/useAuth';
 import {
     CircularProgress,
@@ -14,7 +14,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default function ConfirmPasswordless() {
 // const classes = useStyles();
-const {handleSubmit, control, formState: { errors }} = useForm();
+const {handleSubmit, control, formState: { errors }, setError} = useForm();
 const {signMagicLink} = useAuth();
 const history = useHistory();
 const [loading, setLoading] = useState(false);
@@ -33,7 +33,7 @@ const onSubmit = async (data) => {
 
 <div>
 <form>
-
+{errors.email && <h1>error occured</h1>}
     <Controller
         name="email"
         control={control}

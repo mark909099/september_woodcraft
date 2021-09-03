@@ -10,6 +10,7 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
+import { HistoryTwoTone } from '@material-ui/icons';
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_FB_API,
@@ -31,9 +32,8 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isAuthenticating, setIsAuthenticating] = useState(true);
-  const history = useHistory();
   const auth = getAuth();
-
+  const history = useHistory();
   const actionCodeSettings = {
     url:"http://localhost:3000/confirm",
     handleCodeInApp: true,
@@ -59,6 +59,7 @@ const signMagicLink = (email) => {
     // Clear email from storage.
     window.localStorage.removeItem('emailForSignIn');
     // You can access the new user via result.user
+    setUser(result.user)
   })
   .catch((error) => {
     // Some error occurred, you can inspect the code: error.code

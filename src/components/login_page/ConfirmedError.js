@@ -1,9 +1,13 @@
 import React from 'react';
+import ConfirmedErrorLoading from './ConfirmedErrorLoading';
+import ConfirmedErrorRedirect from './ConfirmedErrorRedirect';
 
 export default function ConfirmedError() {
     return (
 <div>
-<h1>your link has expired</h1>    
+<ConfirmedErrorLoading />
+<ConfirmedErrorRedirect />
+
 </div>
     )
 }
