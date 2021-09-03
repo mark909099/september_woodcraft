@@ -98,18 +98,29 @@ const logout = () => {
 
 useEffect(() => {
   const unsubscribe = onAuthStateChanged(auth, (user1) => {
-    if (user1) {
-      setUser(user1);
-    setIsAuthenticating(false);
-    // User is signed in, see docs for a list of available properties
-    // https://firebase.google.com/docs/reference/js/firebase.User
-    } else {
-      // User is signed out
-      setUser(null);
-    }
-    });
-      return () => unsubscribe();
+      
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        setUser(user1);
+        // setIsAuthenticating(false);
+        });
+
+        return () => unsubscribe();
    }, []);
+
+// useEffect(() => {
+//   const unsubscribe = onAuthStateChanged(auth, (user1) => {
+//     if (user1) {
+//       setUser(user1);
+//     setIsAuthenticating(false);
+//     // User is signed in, see docs for a list of available properties
+//     // https://firebase.google.com/docs/reference/js/firebase.User
+//     } else {
+//       // User is signed out
+//     }
+//     });
+//       return () => unsubscribe();
+//    }, []);
 
 const values = {
   user,
@@ -122,7 +133,7 @@ const values = {
 
 return (
   <AuthContext.Provider value={values}>
-      {!isAuthenticating && children}
+      {children}
   </AuthContext.Provider>
 )
 

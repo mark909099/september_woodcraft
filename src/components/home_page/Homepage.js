@@ -1,9 +1,12 @@
 import NavbarLogin from './../NavbarLogin';
+import {
+     Typography,
+     } from '@material-ui/core';
 export default function Homepage() {
     return (
 <div>
 <NavbarLogin />
-<h1>Homepage</h1>        
+<Typography variant="h2">Homepage</Typography>        
 </div>
     )
 }
