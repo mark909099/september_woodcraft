@@ -7,7 +7,10 @@ export const theme = createTheme({
         },
         secondary: {
             main: '#9e9e9e',
-        }
+        },
+        background: {
+            default:'#eeeeee'
+        },
     },
     typography: {
         fontFamily: "Arial",

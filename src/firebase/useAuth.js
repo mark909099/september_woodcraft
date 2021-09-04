@@ -6,11 +6,11 @@ import {
   sendSignInLinkToEmail,
   signInWithEmailLink,
   GoogleAuthProvider,
+  FacebookAuthProvider,
   signInWithRedirect,
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
-import { HistoryTwoTone } from '@material-ui/icons';
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_FB_API,
@@ -69,6 +69,7 @@ const signMagicLink = (email) => {
   });
 }
 
+
 const provider = new GoogleAuthProvider();
 const signGoogle = () => {
   signInWithRedirect(auth, provider)
@@ -82,6 +83,33 @@ const signGoogle = () => {
     console.log(error.email);
     // The AuthCredential type that was used.
     console.log(GoogleAuthProvider.credentialFromError(error));
+  });
+}
+
+
+const provider2 = new FacebookAuthProvider();
+const signFacebook = () => {
+  signInWithRedirect(auth, provider2)
+  .then((result) => {
+    // The signed-in user info.
+    const user = result.user;
+
+    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+    const credential = FacebookAuthProvider.credentialFromResult(result);
+    const accessToken = credential.accessToken;
+
+    // ...
+  })
+  .catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    const email = error.email;
+    // The AuthCredential type that was used.
+    const credential = FacebookAuthProvider.credentialFromError(error);
+
+    // ...
   });
 }
 
@@ -124,6 +152,7 @@ const values = {
   sendMagicLink,
   signMagicLink,
   signGoogle,
+  signFacebook,
   logout
 }
 

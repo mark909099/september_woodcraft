@@ -29,7 +29,7 @@ export default function LoginPasswordlessHeader() {
 const classes = useStyles();
     return (
 <div>
-<Fade in={startFade} timeout={1000}>
+<Fade in={startFade} timeout={400}>
 <Typography
 variant="h3" className={classes.header}>
     Passwordless

@@ -1,3 +1,4 @@
+import './App.css';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { theme } from './theme';
 import Homepage from './components/home_page/Homepage';
@@ -7,6 +8,7 @@ import {
   Route,
 } from "react-router-dom";
 import { AuthProvider } from './firebase/useAuth';
+import CssBaseline from "@material-ui/core/CssBaseline";
 import LoginGeneral from './components/login_page/LoginGeneral';
 import LoginPasswordless from './components/login_page/LoginPasswordless';
 import ConfirmPasswordless from './components/login_page/ConfirmPasswordless';
@@ -16,6 +18,7 @@ function App() {
   return (
 <div>
 <ThemeProvider theme={theme}>
+<CssBaseline />
 <Router>
   <Switch>
     <Route exact path="/">

@@ -93,7 +93,7 @@ const handleClose = (event, reason) => {
 >
 
 {/* general grid item A: input + error.message element */}
-<Fade in={startFade} timeout={1000}>
+<Fade in={startFade} timeout={600}>
 <Grid item>
 
 {/* sub grid: A1:(input), A2:(error.message) */}
@@ -125,7 +125,7 @@ const handleClose = (event, reason) => {
 </Fade>
 {/* button element */}
 <Grid item>
-<Fade in={startFade} timeout={1000}>
+<Fade in={startFade} timeout={3000}>
     <Box style={{paddingLeft:'0.5rem', paddingTop:'0.5rem'}}>
     <Button className={classes.btn}
     variant="outlined"

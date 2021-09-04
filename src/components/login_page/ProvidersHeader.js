@@ -6,6 +6,7 @@ import {
     Typography,
     Grid,
   } from '@material-ui/core';
+import Fade from 'react-reveal/Fade';
 
 const useStyles = makeStyles((theme) => ({
     header_providers: {
@@ -21,11 +22,16 @@ const useStyles = makeStyles((theme) => ({
 
 }))
 
+
+
 export default function ProvidersHeader() {
 const classes = useStyles();
+
     return (
 <div>
+<Fade left cascade>
 <Typography className={classes.header_providers} variant="h3">With our trusted providers</Typography>      
+</Fade>
 </div>
     )
 }
