@@ -7,6 +7,7 @@ import {
   signInWithEmailLink,
   GoogleAuthProvider,
   FacebookAuthProvider,
+  OAuthProvider,
   signInWithRedirect,
   signOut,
   onAuthStateChanged,
@@ -93,7 +94,7 @@ const signFacebook = () => {
   .then((result) => {
     // The signed-in user info.
     const user = result.user;
-
+    setUser(result.user)
     // This gives you a Facebook Access Token. You can use it to access the Facebook API.
     const credential = FacebookAuthProvider.credentialFromResult(result);
     const accessToken = credential.accessToken;
@@ -102,8 +103,8 @@ const signFacebook = () => {
   })
   .catch((error) => {
     // Handle Errors here.
-    const errorCode = error.code;
-    const errorMessage = error.message;
+    console.log(error.code);
+    console.log(error.message);
     // The email of the user's account used.
     const email = error.email;
     // The AuthCredential type that was used.
@@ -113,6 +114,25 @@ const signFacebook = () => {
   });
 }
 
+
+const provider3 = new OAuthProvider('microsoft.com');
+const signMicrosoft = () => {
+  signInWithRedirect(auth, provider3)
+  .then((result) => {
+    // User is signed in.
+    // IdP data available in result.additionalUserInfo.profile.
+
+    // Get the OAuth access token and ID Token
+    const credential = OAuthProvider.credentialFromResult(result);
+    const accessToken = credential.accessToken;
+    const idToken = credential.idToken;
+    setUser(result.user)
+  })
+  .catch((error) => {
+    // Handle error.
+    console.log(error)
+  });  
+}
 
 const logout = () => {
   signOut(auth).then(() => {
@@ -153,6 +173,7 @@ const values = {
   signMagicLink,
   signGoogle,
   signFacebook,
+  signMicrosoft,
   logout
 }
 

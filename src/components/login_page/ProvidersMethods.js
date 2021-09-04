@@ -30,7 +30,7 @@ const [fadeGoogle, setFadeGoogle] = useState(false);
 const [fadeFacebook, setFadeFacebook] = useState(false);
 const [fadeMicrosoft, setFadeMicrosoft] = useState(false);
 
-const {signGoogle, signFacebook} = useAuth();
+const {signGoogle, signFacebook, signMicrosoft} = useAuth();
 
 setTimeout(() => {
   setFadeGoogle(true);
@@ -90,7 +90,7 @@ setTimeout(() => {
 <Box display="flex" justifyContent="center">
 <Button
  style={{ backgroundColor: 'transparent'}}
- 
+ onClick={signMicrosoft}
  >
 <CardMedia className={classes.provider_login}
           component="img"
