@@ -7,6 +7,7 @@ import { useAuth } from '../../firebase/useAuth';
 import {
     Typography,
   } from '@material-ui/core';
+import GoogleLogin from './GoogleLogin';
 
 const useStyles = makeStyles((theme) => ({
     header: {
@@ -37,7 +38,7 @@ history.push('/')
 <div>
 <NavbarLogin />
 <Typography className={classes.header} variant="h2">Login</Typography>
-<LoginMethods />   
+<LoginMethods />
 </div>
 }
 </div>

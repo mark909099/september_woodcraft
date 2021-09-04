@@ -60,6 +60,7 @@ const logout1 = async () => {
             </Button>
           </Typography>
           <Typography className={classes.empty_distance}></Typography>
+          
           <Button onClick={logout1} color="inherit">Logout</Button>
         </Toolbar>
       </AppBar>

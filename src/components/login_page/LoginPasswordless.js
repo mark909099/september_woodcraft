@@ -147,8 +147,6 @@ const handleClose = (event, reason) => {
         </Alert>
 </Snackbar>
 
-<div style={{width:'100vw', borderBottom:'1px solid black', paddingTop:'3rem'}}></div>
-
 </div>
     )
 }

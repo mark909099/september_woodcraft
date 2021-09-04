@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import CardMedia from '@material-ui/core/CardMedia';
-
+import Menu from './Menu';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,15 +26,16 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function ButtonAppBar() {
-  const classes = useStyles();
+
+export default function NavbarLogin() {
+const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
+            <Menu />
           </IconButton>
           <Typography variant="h6">
             <Button href='/'>
@@ -45,7 +47,7 @@ export default function ButtonAppBar() {
         />
             </Button>
           </Typography>
-          <Typography className={classes.empty_distance}></Typography>
+          <Box className={classes.empty_distance}></Box>
           <Button href='/login' color="inherit">Login</Button>
         </Toolbar>
       </AppBar>

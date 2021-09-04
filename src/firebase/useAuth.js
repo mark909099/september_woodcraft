@@ -6,8 +6,6 @@ import {
   sendSignInLinkToEmail,
   signInWithEmailLink,
   GoogleAuthProvider,
-  FacebookAuthProvider,
-  OAuthProvider,
   signInWithRedirect,
   signOut,
   onAuthStateChanged,
@@ -43,6 +41,7 @@ export const AuthProvider = ({ children }) => {
 const sendMagicLink = (email) => {
   sendSignInLinkToEmail(auth, email, actionCodeSettings)
   .then(() => {
+    
     // The link was successfully sent. Inform the user.
     // Save the email locally so you don't need to ask the user for it again
     // if they open the link on the same device.
@@ -51,6 +50,7 @@ const sendMagicLink = (email) => {
   .catch((error) => {
     console.log(error.code);
     console.log(error.message);
+
   });
 };
 
@@ -88,52 +88,6 @@ const signGoogle = () => {
 }
 
 
-const provider2 = new FacebookAuthProvider();
-const signFacebook = () => {
-  signInWithRedirect(auth, provider2)
-  .then((result) => {
-    // The signed-in user info.
-    const user = result.user;
-    setUser(result.user)
-    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-    const credential = FacebookAuthProvider.credentialFromResult(result);
-    const accessToken = credential.accessToken;
-
-    // ...
-  })
-  .catch((error) => {
-    // Handle Errors here.
-    console.log(error.code);
-    console.log(error.message);
-    // The email of the user's account used.
-    const email = error.email;
-    // The AuthCredential type that was used.
-    const credential = FacebookAuthProvider.credentialFromError(error);
-
-    // ...
-  });
-}
-
-
-const provider3 = new OAuthProvider('microsoft.com');
-const signMicrosoft = () => {
-  signInWithRedirect(auth, provider3)
-  .then((result) => {
-    // User is signed in.
-    // IdP data available in result.additionalUserInfo.profile.
-
-    // Get the OAuth access token and ID Token
-    const credential = OAuthProvider.credentialFromResult(result);
-    const accessToken = credential.accessToken;
-    const idToken = credential.idToken;
-    setUser(result.user)
-  })
-  .catch((error) => {
-    // Handle error.
-    console.log(error)
-  });  
-}
-
 const logout = () => {
   signOut(auth).then(() => {
     // Sign-out successful.
@@ -142,19 +96,6 @@ const logout = () => {
     // An error happened.
   });
 }
-
-
-// useEffect(() => {
-//   const unsubscribe = onAuthStateChanged(auth, (user1) => {
-      
-//         // User is signed in, see docs for a list of available properties
-//         // https://firebase.google.com/docs/reference/js/firebase.User
-//         setUser(user1);
-//         // setIsAuthenticating(false);
-//         });
-
-//         return () => unsubscribe();
-//    }, []);
 
 useEffect(() => {
   const unsubscribe = onAuthStateChanged(auth, (user1) => {
@@ -172,8 +113,6 @@ const values = {
   sendMagicLink,
   signMagicLink,
   signGoogle,
-  signFacebook,
-  signMicrosoft,
   logout
 }
 
