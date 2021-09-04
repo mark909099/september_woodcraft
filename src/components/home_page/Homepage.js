@@ -14,7 +14,7 @@ const { user } = useAuth()
 {user?
 <div> 
 <NavbarLogout />
-<h1>lorem ipsum</h1>
+<HomeHeader />
 </div>
 :
 <div>

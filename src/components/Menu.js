@@ -31,16 +31,18 @@ const toggleDrawer = (open) => () => {
     
     return (
 <div>
-<Button onClick={toggleDrawer(true)}><MenuIcon /></Button>       
+<Button style={{color:'white'}} onClick={toggleDrawer(true)}><MenuIcon fontSize="large" /></Button>       
 <Drawer
 anchor={'left'}
 open={state}
 onClose={toggleDrawer(false)}
-transitionDuration={1000}
+transitionDuration={800}
 classes={{ paper: classes.paper }}
 >
 <List className={classes.list}>
   <ListItem><Button className={classes.item}>Home</Button></ListItem>
+  <ListItem><Button className={classes.item}>Products</Button></ListItem>
+  <ListItem><Button className={classes.item}>Store</Button></ListItem>
 </List>
 </Drawer>
 </div>
