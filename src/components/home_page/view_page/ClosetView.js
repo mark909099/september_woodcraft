@@ -56,7 +56,7 @@ const classes = useStyles();
 <CardMedia className={classes.photo}
           component="img"
           alt="September Woodcraft"
-          image="/images/home_page/chair_view.jpg"
+          image="/images/home_page/closet_view.jpg"
         />
 </Box>
 </Fade>
@@ -68,7 +68,7 @@ const classes = useStyles();
 <Fade duration={3000}>
  <Typography className={classes.desc}
  variant="body1">
-   Chairs of different sizes and metrics, For adults and children. Comes with various leg and back designes.
+   Small or extra large size. Light or dark shade. Classic or modern design. Our closet will fit your need.
    </Typography>
 </Fade>
 </Box>
@@ -106,7 +106,7 @@ const classes = useStyles();
 <CardMedia className={classes.photo}
           component="img"
           alt="September Woodcraft"
-          image="/images/home_page/chair_view.jpg"
+          image="/images/home_page/closet_view1.jpg"
         />
 </Box>
 </Fade>
