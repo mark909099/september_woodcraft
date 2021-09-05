@@ -8,7 +8,6 @@ import {
     Fade,
   } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { CallMissedSharp } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
     root: {

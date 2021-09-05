@@ -13,6 +13,7 @@ import LoginGeneral from './components/login_page/LoginGeneral';
 import LoginPasswordless from './components/login_page/LoginPasswordless';
 import ConfirmPasswordless from './components/login_page/ConfirmPasswordless';
 import Confirmed from './components/login_page/Confirmed';
+import GeneralStore from './components/store_page/GeneralStore';
 
 function App() {
   return (
@@ -32,6 +33,9 @@ function App() {
     </Route>
     <Route exact path="/confirmed">
       <Confirmed />
+    </Route>
+    <Route exact path="/store">
+      <GeneralStore />
     </Route>
   </Switch>
 </Router>

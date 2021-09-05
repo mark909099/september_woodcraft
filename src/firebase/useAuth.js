@@ -22,6 +22,7 @@ const firebaseConfig = {
   };
   
 const app = initializeApp(firebaseConfig);
+
 const AuthContext = createContext();
 
 export const useAuth = () => {

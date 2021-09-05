@@ -36,13 +36,13 @@ const toggleDrawer = (open) => () => {
 anchor={'left'}
 open={state}
 onClose={toggleDrawer(false)}
-transitionDuration={800}
+transitionDuration={600}
 classes={{ paper: classes.paper }}
 >
 <List className={classes.list}>
-  <ListItem><Button className={classes.item}>Home</Button></ListItem>
+  <ListItem><Button href="/" className={classes.item}>Home</Button></ListItem>
   <ListItem><Button className={classes.item}>Products</Button></ListItem>
-  <ListItem><Button className={classes.item}>Store</Button></ListItem>
+  <ListItem><Button href="/store" className={classes.item}>Store</Button></ListItem>
 </List>
 </Drawer>
 </div>
