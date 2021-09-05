@@ -16,12 +16,30 @@ const useStyles = makeStyles((theme) => ({
         color:'#eeeeee',
         textAlign:'center',
         paddingTop:'1rem',
-        fontFamily:'Impact'
+        fontFamily:'Impact',
+        [theme.breakpoints.up('xs')]: {
+            fontSize:'2rem',
+        },
+        [theme.breakpoints.up('sm')]: {
+            fontSize:'4rem',
+        },
+        [theme.breakpoints.up('md')]: {
+            fontSize:'6rem',
+        },
     },
     text_subheader: {
         color:'#eeeeee',
         textAlign:'center',
-        paddingTop:'1rem'
+        paddingTop:'1rem',
+        [theme.breakpoints.up('xs')]: {
+            fontSize:'1.5rem',
+        },
+        [theme.breakpoints.up('sm')]: {
+            fontSize:'2.8rem',
+        },
+        [theme.breakpoints.up('md')]: {
+            fontSize:'4.5rem',
+        },
     }
 }))
 
