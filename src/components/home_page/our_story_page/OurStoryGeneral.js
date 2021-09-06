@@ -1,30 +1,29 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {
-    Typography,
-    Grid,
-  } from '@material-ui/core';
-import ChairView from './ChairView';
-import TableView from './TableView';
-import ClosetView from './ClosetView';
+import { Typography } from '@material-ui/core';
 import { Fade } from 'react-reveal';
 
-  const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
     paper1: {
         height:'100vh',
+        backgroundImage:'url(images/home_page/bg2.jpg)',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
     },
     header: {
         textAlign:'center',
+        color:'#eeeeee',
         paddingTop:'1rem',
         paddingBottom:'1.5rem',
+        fontFamily:'Impact',
         [theme.breakpoints.up('xs')]: {
-            fontSize:'3.2rem'
-        },
-        [theme.breakpoints.up('sm')]: {
             fontSize:'4rem'
         },
+        [theme.breakpoints.up('sm')]: {
+            fontSize:'6rem'
+        },
         [theme.breakpoints.up('md')]: {
-            fontSize:'5rem'
+            fontSize:'7rem'
         },
     },
     subheader: {
@@ -33,24 +32,13 @@ import { Fade } from 'react-reveal';
     }
 }))
 
-export default function ProductView() {
+export default function OurStoryGeneral() {
 const classes = useStyles();
     return (
 <div className={classes.paper1}>
-<Fade duration={2000}>
-<Typography variant="h3" className={classes.header}>Products</Typography>
+<Fade right duration={3000}>
+<Typography className={classes.header}>Our Story</Typography>  
 </Fade>
-
-<Grid
-  container
-  direction="column"
-  justifyContent="center"
-  alignItems="center"
->
-<ChairView />
-<TableView />
-<ClosetView />
-</Grid>
 </div>
     )
 }

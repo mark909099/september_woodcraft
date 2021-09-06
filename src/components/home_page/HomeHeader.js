@@ -48,12 +48,12 @@ const classes = useStyles();
     return (
 
 <div className={classes.paper1}>
-<Fade delay={500} duration={1500}>
+<Fade delay={1500} duration={1500}>
 <Typography variant="h2" className={classes.text_header}>September Woodcraft</Typography>  
 </Fade>
 
 <Typography variant="h4" className={classes.text_subheader}>
-<Flip left cascade delay={1500} duration={2000}>   
+<Flip left cascade delay={2500} duration={2000}>   
 Furniture that fits your needs
 </Flip>
 </Typography>        

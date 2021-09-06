@@ -7,6 +7,7 @@ import { useAuth } from '../../firebase/useAuth';
 import HomeHeader from './HomeHeader';
 import { Fade } from 'react-reveal';
 import ProductView from './view_page/ProductView';
+import OurStoryGeneral from './our_story_page/OurStoryGeneral';
 
 export default function Homepage() {
 const { user } = useAuth();
@@ -14,11 +15,14 @@ const { user } = useAuth();
 <div>
 {user?
 <div>
-<Fade delay={250} duration={250}>
+<Fade delay={250} duration={1000}>
 <NavbarLogout />
 <HomeHeader />
 </Fade>
 <ProductView />
+<Fade duration={5000}>
+<OurStoryGeneral />
+</Fade>
 </div>
 :
 <div>
@@ -27,6 +31,9 @@ const { user } = useAuth();
 <HomeHeader />
 </Fade>
 <ProductView />
+<Fade duration={5000}>
+<OurStoryGeneral />
+</Fade>
 </div>
 }
      

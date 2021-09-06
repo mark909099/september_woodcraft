@@ -15,15 +15,45 @@ import {
     Typography,
     Box,
     Grid,
-    Button
+    Button,
+    CardActionArea,
     } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
+    header: {
+        paddingTop:'0.2rem',
+        textAlign:'center',
+    },
+    desc: {
+        textAlign:'center',
+        paddingBottom:'0.2rem',
+        [theme.breakpoints.up('xs')]: {
+            fontSize:'0.8rem'
+        },
+        [theme.breakpoints.up('sm')]: {
+            fontSize:'1rem'
+        },
+        [theme.breakpoints.up('md')]: {
+            fontSize:'1rem'
+        },
+    },
+    image_box: {
+        paddingBottom:'0.2rem'
+    },
+    price: {
+        paddingBottom:'0.2rem'
+    },
     product_image: {
-        height: '150px',
-        width: '150px',
-        justifyContent:'center'
+        justifyContent:'center',
+        [theme.breakpoints.up('xs')]: {
+            height: '100px',
+            width: '100px',
+        },
+        [theme.breakpoints.up('sm')]: {
+            height: '150px',
+            width: '150px',
+        },
     },
     item: {
         border:'1px solid black',
@@ -31,6 +61,19 @@ const useStyles = makeStyles((theme) => ({
     },
     grid_container: {
         padding:'1rem',
+    },
+    box_button: {
+        paddingBottom:'0.2rem'
+    },
+    button: {
+        border:'1px solid black',
+        fontFamily:'Tahoma',
+        [theme.breakpoints.up('xs')]: {
+            width:'100px',   
+        },
+        [theme.breakpoints.up('sm')]: {
+            width:'150px',   
+        },
     }
 }))
 
@@ -59,6 +102,7 @@ const getAllStoreProducts = async () => {
     })
 }
 
+
     return (
 <div>
 <Grid
@@ -69,21 +113,29 @@ const getAllStoreProducts = async () => {
   >
 {storeProducts.map((storeProduct) => (
     
-      <Grid className={classes.grid_container} key={storeProduct.id} item xs={12} sm={6} md={4} lg={3}>
+      <Grid className={classes.grid_container} key={storeProduct.id} item xs={6} sm={6} md={4} lg={3}>
         <Box className={classes.item}>
-        <Box display="flex" flexDirection="column" alignContent="center">
-        <Typography variant="h6">{storeProduct.name}</Typography>
-        <Typography variant="body1">{storeProduct.desc}</Typography>
-        <Box display="flex" justifyContent="center">
-      <CardMedia className={classes.product_image}
+        <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+        <Typography variant="h6" className={classes.header}>{storeProduct.name}</Typography>
+        <Typography className={classes.desc}>{storeProduct.desc}</Typography>
+        <Box className={classes.image_box} display="flex" justifyContent="center">
+        <CardActionArea onClick={() => {
+                                            try {
+                                                window.open(`${storeProduct.photo}`)
+                                            } catch (err) {
+                                                console.log(err)
+                                        } 
+        }}>
+        <CardMedia className={classes.product_image}
           component="img"
           alt=""
           image={storeProduct.photo}
         />
+        </CardActionArea>
         </Box>
-        <Typography variant="body2">Price: {storeProduct.price}</Typography>
-        <Box display="flex" justifyContent="center" style={{border:'1px solid black', borderRadius:'20%'}}>
-        <Button fullWidth="true">Add to cart</Button>
+        <Typography variant="body2" className={classes.price}>Price: {storeProduct.price}</Typography>
+        <Box className={classes.box_button}>
+        <Button className={classes.button}>Add to cart</Button>
         </Box>
         </Box>
         </Box>

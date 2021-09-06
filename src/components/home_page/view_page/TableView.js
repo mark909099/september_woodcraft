@@ -52,7 +52,7 @@ const classes = useStyles();
 
 <Grid item xs={10} sm={5} className={classes.item_text}>
 <Box>
-<Fade duration={3000}>
+<Fade duration={4000}>
  <Typography className={classes.desc}
  variant="body1">
    Highly durable tables. Strengh and robustness is the prime quality of our tables. Made of Oak or Cherry.
@@ -64,7 +64,7 @@ const classes = useStyles();
 
 
 <Grid item xs={12} sm={6}>
-<Fade right duration={1500}>
+<Fade right duration={2500}>
 <Box display="flex" justifyContent="center">
 <CardMedia className={classes.photo}
           component="img"
@@ -91,7 +91,7 @@ const classes = useStyles();
 
 <Grid item xs={10} sm={5} className={classes.item_text}>
 <Box>
-<Fade duration={3000}>
+<Fade duration={4000}>
  <Typography className={classes.desc}
  variant="body1">
    Highly durable tables. Strengh and robustness is the prime quality of our tables. Made of Oak or Cherry.
@@ -103,7 +103,7 @@ const classes = useStyles();
 
 
 <Grid item xs={12} sm={6}>
-<Fade right duration={1500}>
+<Fade right duration={2500}>
 <Box display="flex" justifyContent="center">
 <CardMedia className={classes.photo}
           component="img"

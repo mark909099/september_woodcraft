@@ -41,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
 export default function ChairView() {
 const classes = useStyles();
     return (
+
 <div>
 
 <Hidden xsDown>
@@ -52,7 +53,7 @@ const classes = useStyles();
 >
 
 <Grid item xs={12} sm={6}>
-<Fade left duration={1500}>
+<Fade left duration={2500}>
 <Box display="flex" justifyContent="center">
 <CardMedia className={classes.photo}
           component="img"
@@ -66,7 +67,7 @@ const classes = useStyles();
 
 <Grid item xs={10} sm={5} className={classes.item_text}>
 <Box>
-<Fade duration={3000}>
+<Fade duration={4000}>
  <Typography className={classes.desc}
  variant="body1">
    Chairs of different sizes and metrics, For adults and children. Comes with various leg and back designes.
@@ -92,7 +93,7 @@ const classes = useStyles();
 
 <Grid item xs={10} sm={5} className={classes.item_text}>
 <Box>
-<Fade duration={3000}>
+<Fade duration={4000}>
  <Typography className={classes.desc}
  variant="body1">
    Chairs of different sizes and metrics, For adults and children. Comes with various leg and back designes.
@@ -102,7 +103,7 @@ const classes = useStyles();
 </Grid>  
 
 <Grid item xs={12} sm={6}>
-<Fade left duration={1500}>
+<Fade left duration={2500}>
 <Box display="flex" justifyContent="center">
 <CardMedia className={classes.photo}
           component="img"
