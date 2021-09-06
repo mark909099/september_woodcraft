@@ -9,7 +9,7 @@ import { Fade } from 'react-reveal';
 import ProductView from './view_page/ProductView';
 
 export default function Homepage() {
-const { user } = useAuth()
+const { user } = useAuth();
     return (
 <div>
 {user?
@@ -18,6 +18,7 @@ const { user } = useAuth()
 <NavbarLogout />
 <HomeHeader />
 </Fade>
+<ProductView />
 </div>
 :
 <div>

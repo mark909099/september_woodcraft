@@ -7,9 +7,11 @@ import {
   signInWithEmailLink,
   GoogleAuthProvider,
   signInWithRedirect,
+  updateProfile,
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
+
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_FB_API,
@@ -89,6 +91,20 @@ const signGoogle = () => {
 }
 
 
+const updateUserName = () => {
+  updateProfile(auth.currentUser, {
+    displayName: "rabbbbbit"
+  }).then(() => {
+    // Profile updated!
+    // ...
+  }).catch((error) => {
+    // An error occurred
+    // ...
+    console.log((error))
+  });
+}
+
+
 const logout = () => {
   signOut(auth).then(() => {
     // Sign-out successful.
@@ -114,6 +130,7 @@ const values = {
   sendMagicLink,
   signMagicLink,
   signGoogle,
+  updateUserName,
   logout
 }
 

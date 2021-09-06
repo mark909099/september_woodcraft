@@ -9,7 +9,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import CardMedia from '@material-ui/core/CardMedia';
 import { useAuth } from '../firebase/useAuth';
 import { useHistory } from 'react-router-dom';
-import Menu from './Menu';
+import MenuLogged from './MenuLogged';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 const useStyles = makeStyles((theme) => ({
@@ -49,7 +49,7 @@ const logout1 = async () => {
       <AppBar position="static">
         <Toolbar>
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <Menu />
+            <MenuLogged />
           </IconButton>
           <Typography variant="h6">
             <Button href='/'>
@@ -63,7 +63,7 @@ const logout1 = async () => {
           </Typography>
           <Typography className={classes.empty_distance}></Typography>
           <Button href='/store' color="inherit"><ShoppingCartIcon /></Button>
-          <Button onClick={logout1} color="inherit">Logout</Button>
+          <Button href='/profile' color="inherit">Profile</Button>
         </Toolbar>
       </AppBar>
     </div>

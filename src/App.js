@@ -14,6 +14,7 @@ import LoginPasswordless from './components/login_page/LoginPasswordless';
 import ConfirmPasswordless from './components/login_page/ConfirmPasswordless';
 import Confirmed from './components/login_page/Confirmed';
 import GeneralStore from './components/store_page/GeneralStore';
+import ProfilePage from './components/profile_page/ProfilePage';
 
 function App() {
   return (
@@ -36,6 +37,9 @@ function App() {
     </Route>
     <Route exact path="/store">
       <GeneralStore />
+    </Route>
+    <Route exact path="/profile">
+      <ProfilePage />
     </Route>
   </Switch>
 </Router>

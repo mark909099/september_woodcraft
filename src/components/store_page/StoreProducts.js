@@ -10,13 +10,27 @@ import {
     onSnapshot,
     query,
      } from "firebase/firestore";
-import { CardMedia } from '@material-ui/core';
+import {
+    CardMedia,
+    Typography,
+    Box,
+    Grid,
+    Button
+    } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     product_image: {
         height: '150px',
         width: '150px',
+        justifyContent:'center'
+    },
+    item: {
+        border:'1px solid black',
+        borderRadius:'5%',
+    },
+    grid_container: {
+        padding:'1rem',
     }
 }))
 
@@ -47,19 +61,36 @@ const getAllStoreProducts = async () => {
 
     return (
 <div>
+<Grid
+    container
+    direction="row"
+    justifyContent="center"
+    alignItems="center"
+  >
 {storeProducts.map((storeProduct) => (
-    <div key={storeProduct.id}>
-        <h2>{storeProduct.name}</h2>
-        <p>{storeProduct.desc}</p>
-      <p>
+    
+      <Grid className={classes.grid_container} key={storeProduct.id} item xs={12} sm={6} md={4} lg={3}>
+        <Box className={classes.item}>
+        <Box display="flex" flexDirection="column" alignContent="center">
+        <Typography variant="h6">{storeProduct.name}</Typography>
+        <Typography variant="body1">{storeProduct.desc}</Typography>
+        <Box display="flex" justifyContent="center">
       <CardMedia className={classes.product_image}
           component="img"
           alt=""
           image={storeProduct.photo}
         />
-      </p>
-    </div>
-))}           
+        </Box>
+        <Typography variant="body2">Price: {storeProduct.price}</Typography>
+        <Box display="flex" justifyContent="center" style={{border:'1px solid black', borderRadius:'20%'}}>
+        <Button fullWidth="true">Add to cart</Button>
+        </Box>
+        </Box>
+        </Box>
+    </Grid>
+))}      
+</Grid>     
 </div>
+
     )
 }
