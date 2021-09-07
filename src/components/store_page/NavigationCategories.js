@@ -45,7 +45,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NavigationCategories() {
 const classes = useStyles();
-const [isActive, setisActive] = useState(true)
     return (
 <div>
 

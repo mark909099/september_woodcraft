@@ -4,7 +4,6 @@ import {
     collection,
     where,
     orderBy,
-    limit,
     getFirestore,
     onSnapshot,
     query,
@@ -82,13 +81,20 @@ export default function StoreProducts() {
 const classes = useStyles();
 const [storeProducts, setStoreProducts] = useState([]);
 const [loading, setLoading] = useState(false);
+const [showAllProducts, setShowAllProducts] = useState(true)
+const [showAllProductsByLowToHighPrice, setShowAllProductsByLowToHighPrice] = useState(false)
+const [showAllProductsByHighToLowPrice, setShowAllProductsByHighToLowPrice] = useState(false)
+const [showAllProductsByName, setShowAllProductsByName] = useState(false)
 
 const { user, app } = useAuth();
 const db = getFirestore(app);
 
+
 useEffect(() => {
     getAllStoreProducts()
-}, []);
+}, [showAllProducts, showAllProductsByLowToHighPrice, showAllProductsByHighToLowPrice, showAllProductsByName]);
+
+
 
 if (loading) {
     return (
@@ -98,8 +104,60 @@ if (loading) {
     )
 };
 
+
+
 const getAllStoreProducts = async () => {
+    if (showAllProducts) {
     setLoading(true);
+    const q = query(collection(db, "store"));
+    onSnapshot(q, (querySnapshot) => {
+        const items = [];
+        querySnapshot.forEach((doc2) => {
+            items.push(doc2.data())
+        })
+        setStoreProducts(items);
+        setLoading(false);
+    })
+} else if (showAllProductsByLowToHighPrice) {
+    setLoading(true);
+    const q = query(collection(db, "store"), orderBy("price"));
+    onSnapshot(q, (querySnapshot) => {
+        const items = [];
+        querySnapshot.forEach((doc3) => {
+            items.push(doc3.data())
+        })
+        setStoreProducts(items);
+        setLoading(false);
+    })
+} else if (showAllProductsByHighToLowPrice) {
+    setLoading(true);
+    const q = query(collection(db, "store"), orderBy("price", "desc"));
+    onSnapshot(q, (querySnapshot) => {
+        const items = [];
+        querySnapshot.forEach((doc3) => {
+            items.push(doc3.data())
+        })
+        setStoreProducts(items);
+        setLoading(false);
+    })
+} else if (showAllProductsByName) {
+    setLoading(true);
+    const q = query(collection(db, "store"), orderBy("name"));
+    onSnapshot(q, (querySnapshot) => {
+        const items = [];
+        querySnapshot.forEach((doc3) => {
+            items.push(doc3.data())
+        })
+        setStoreProducts(items);
+        setLoading(false);
+    })
+}
+}
+
+
+const getAllStoreProductsByLowToHighPrice = async () => {
+    setLoading(true);
+    setShowAllProducts(false);
     const q = query(collection(db, "store"), orderBy("price"));
     onSnapshot(q, (querySnapshot) => {
         const items = [];
@@ -154,6 +212,44 @@ const getAllStoreClosets = async () => {
 
     return (
 <div>
+<div style={{paddingTop:'0.5rem'}}>
+<Grid
+  container
+  direction="row"
+  justifyContent="center"
+  alignItems="flex-start"
+>
+
+<Grid item xs={11}>
+    <Box display="flex" alignItems="center">
+<Typography style={{paddingRight:'0.3rem'}} variant="body2">Sort by:</Typography>
+<Button onClick={() => {
+    setShowAllProducts(false);
+    setShowAllProductsByLowToHighPrice(false);
+    setShowAllProductsByName(false);
+    setShowAllProductsByLowToHighPrice(true);
+    }} size="small" variant="outlined" className={classes.btn_menu}>Low to high price</Button>
+<Button onClick={() => {
+    setShowAllProducts(false);
+    setShowAllProductsByLowToHighPrice(false);
+    setShowAllProductsByName(false);
+    setShowAllProductsByHighToLowPrice(true)
+}} size="small" variant="outlined" className={classes.btn_menu}>High to low price</Button> 
+<Button onClick={() => {
+    setShowAllProducts(false);
+    setShowAllProductsByLowToHighPrice(false);
+    setShowAllProductsByHighToLowPrice(false)
+    setShowAllProductsByName(true);
+}} size="small" variant="outlined" className={classes.btn_menu}>Name</Button> 
+</Box> 
+</Grid>
+
+</Grid>
+</div>
+
+
+
+
 <Grid
     container
     direction="row"

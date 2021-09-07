@@ -9,7 +9,7 @@ import {
 import StoreProducts from './StoreProducts';
 import StoreHeader from './StoreHeader';
 import NavigationCategories from './NavigationCategories';
-
+import SortAllCategories from './SortAllCategories';
 
 export default function GeneralStore() {
 
