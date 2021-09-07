@@ -45,26 +45,29 @@ export default function ProfileInfo() {
 const classes = useStyles();
 const { user } = useAuth();
 const history = useHistory();
-const [name1, setName1] = useState('sdsd');
 const { register, handleSubmit, control, formState: { errors } } = useForm();
+const [state, setState] = ('')
+const [name, setName] = useState("");
+
+updateProfile(auth.currentUser, {
+  displayName: name,
+}).then(() => {
+  // Profile updated!
+  // ...
+}).catch((error) => {
+  // An error occurred
+  // ...
+});
 
 
+const changeName = ({target}) => {
+  setName(target.value)
+}
+const showValue = () => console.log(name)
 
-const onSubmit = (data) => {
-    const setName = {name1}
-    updateProfile(auth.currentUser, {
-      displayName: setName
-    }).then(() => {
-      // Profile updated!
-      // ...
-    }).catch((error) => {
-      // An error occurred
-      // ...
-      console.log((error))
-    });
-  }
+  console.log(state)
 
-  console.log(name1)
+
 
     return (
 <div className={classes.root}>
@@ -77,34 +80,12 @@ const onSubmit = (data) => {
 <Typography variant="h3">Profile</Typography>
 <Typography variant="body1">Name: {user.displayName}</Typography>
 <Typography variant="body1">Email: {user.email}</Typography>
-
-{/* <form>
-<input value={setName1} onChange={setName1} name="goes"/>
-<button onClick={updateName} type="submit">update</button>
-</form> */}
-
-
-<form onSubmit={handleSubmit(onSubmit)}>
-      {/* register y the "register" function */}
-      <input defaultValue="" onChange={setName1} {...register("userName")} />
-      
-      
-      <input type="submit" />
-    </form>
-
-
-    {/* <form onSubmit={handleSubmit(onSubmit)}>
-      <Controller
-        name="name"
-        control={control}
-        defaultValue=""
-        render={({ field }) => <Input {...field} />}
-      />
-
-<input type="submit" />
-      </form> */}
-
+{/* <button onClick={async () => go()}>goog</button> */}
 </Grid>
+<form>
+<input type="text" value={name} onChange={changeName} />
+<button onClick={showValue} type="submit">change name</button>
+</form>
 
 
 </div>
