@@ -7,6 +7,8 @@ import {
     getFirestore,
     onSnapshot,
     query,
+    setDoc,
+    doc
      } from "firebase/firestore";
 import {
     CardMedia,
@@ -270,7 +272,18 @@ const getAllStoreClosets = async () => {
         </Box>
         <Typography variant="body2" className={classes.price}>Price: {storeProduct.price}</Typography>
         <Box className={classes.box_button}>
-        <Button className={classes.button} onClick={()=> console.log(`${storeProduct.name} added to cart`)}>Add to cart</Button>
+        <Button className={classes.button} onClick={async ()=> {
+
+const data= {
+    name: storeProduct.name,
+    desc : storeProduct.desc,
+    photo: storeProduct.photo,
+    price: storeProduct.price,
+    qty: storeProduct.qty,
+    id_u : user.uid
+}
+await setDoc(doc(db, ("cart"), (user.uid + storeProduct.name)), data);
+        }}>Add to cart</Button>
         </Box>
         </Box>
         </Box>

@@ -18,6 +18,7 @@ import ProfilePage from './components/profile_page/ProfilePage';
 import StoreTablesGeneral from './components/store_page/store_page_tables/StoreTablesGeneral';
 import StoreChairsGeneral from './components/store_page/store_page_chairs/StoreChairsGeneral';
 import StoreClosetsGeneral from './components/store_page/store_page_closets/StoreClosetsGeneral';
+import CartGeneral from './components/cart_page/CartGeneral';
 
 function App() {
   return (
@@ -52,6 +53,9 @@ function App() {
     </Route>
     <Route exact path="/store_closets">
       <StoreClosetsGeneral />
+    </Route>
+    <Route exact path="/cart">
+      <CartGeneral />
     </Route>
   </Switch>
 </Router>

@@ -8,6 +8,7 @@ import HomeHeader from './HomeHeader';
 import { Fade } from 'react-reveal';
 import ProductView from './view_page/ProductView';
 import OurStoryGeneral from './our_story_page/OurStoryGeneral';
+import ExtraPadding from './our_story_page/ExtraPadding';
 
 export default function Homepage() {
 const { user } = useAuth();
@@ -20,6 +21,7 @@ const { user } = useAuth();
 <HomeHeader />
 </Fade>
 <ProductView />
+<ExtraPadding />
 <Fade duration={5000}>
 <OurStoryGeneral />
 </Fade>
@@ -31,6 +33,7 @@ const { user } = useAuth();
 <HomeHeader />
 </Fade>
 <ProductView />
+<ExtraPadding />
 <Fade duration={5000}>
 <OurStoryGeneral />
 </Fade>

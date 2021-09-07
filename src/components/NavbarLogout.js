@@ -62,7 +62,7 @@ const logout1 = async () => {
             </Button>
           </Typography>
           <Typography className={classes.empty_distance}></Typography>
-          <Button href='/store' color="inherit"><ShoppingCartIcon /></Button>
+          <Button href='/cart' color="inherit"><ShoppingCartIcon /></Button>
           <Button href='/profile' color="inherit">Profile</Button>
         </Toolbar>
       </AppBar>
