@@ -7,28 +7,30 @@ import {
    LinearProgress,
  } from '@material-ui/core';
 import StoreProducts from './StoreProducts';
+import StoreHeader from './StoreHeader';
+import NavigationCategories from './NavigationCategories';
 
 
 export default function GeneralStore() {
-const [loading, setLoading] = useState(false);
 
 const { user } = useAuth();
 
-if (loading) {
-    return <LinearProgress />
-};
+
 
     return (
 <div>
 {user?
 <div>
 <NavbarLogout />
-<h1>Products</h1>
+<StoreHeader />
+<NavigationCategories />
 <StoreProducts />
 </div>
 :
 <div>
 <NavbarLogin />
+<StoreHeader />
+<NavigationCategories />
 <StoreProducts />
 </div>
 }

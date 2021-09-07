@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useAuth } from '../../firebase/useAuth';
+import { useAuth } from '../../../firebase/useAuth';
 import {
     collection,
     where,
@@ -74,6 +74,17 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.up('sm')]: {
             width:'150px',   
         },
+    },
+    button_clicked: {
+        border:'1px solid black',
+        fontFamily:'Tahoma',
+        color:'red',
+        [theme.breakpoints.up('xs')]: {
+            width:'100px',   
+        },
+        [theme.breakpoints.up('sm')]: {
+            width:'150px',   
+        },
     }
 }))
 
@@ -87,7 +98,7 @@ const { user, app } = useAuth();
 const db = getFirestore(app);
 
 useEffect(() => {
-    getAllStoreProducts()
+    getAllStoreTables()
 }, []);
 
 if (loading) {

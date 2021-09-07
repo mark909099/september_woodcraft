@@ -15,6 +15,7 @@ import ConfirmPasswordless from './components/login_page/ConfirmPasswordless';
 import Confirmed from './components/login_page/Confirmed';
 import GeneralStore from './components/store_page/GeneralStore';
 import ProfilePage from './components/profile_page/ProfilePage';
+import StoreTablesGeneral from './components/store_page/store_page_tables/StoreTablesGeneral';
 
 function App() {
   return (
@@ -40,6 +41,9 @@ function App() {
     </Route>
     <Route exact path="/profile">
       <ProfilePage />
+    </Route>
+    <Route exact path="/store_tables">
+      <StoreTablesGeneral />
     </Route>
   </Switch>
 </Router>

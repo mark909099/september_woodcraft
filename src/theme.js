@@ -13,7 +13,7 @@ export const theme = createTheme({
         },
     },
     typography: {
-        fontFamily: "Arial",
+        fontFamily: "Tahoma, Arial",
         button: {
             textTransform: 'none',
         },
