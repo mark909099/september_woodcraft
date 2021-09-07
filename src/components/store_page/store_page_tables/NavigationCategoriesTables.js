@@ -45,7 +45,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NavigationCategoriesTables() {
 const classes = useStyles();
-const [isActive, setActive] = useState("store_tables")
     return (
 <div>
 
@@ -71,11 +70,11 @@ const [isActive, setActive] = useState("store_tables")
 </Grid>
 
 <Grid item>
-    <Button className={classes.button}>Chairs</Button>
+    <Button className={classes.button} href="/store_chairs">Chairs</Button>
 </Grid>
 
 <Grid item>
-    <Button className={classes.button}>Closets</Button>
+    <Button className={classes.button} href="/store_closets">Closets</Button>
 </Grid>
 
 </Grid>

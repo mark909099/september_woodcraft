@@ -98,7 +98,7 @@ const { user, app } = useAuth();
 const db = getFirestore(app);
 
 useEffect(() => {
-    getAllStoreTables()
+    getAllStoreClosets()
 }, []);
 
 if (loading) {
@@ -109,32 +109,6 @@ if (loading) {
     )
 };
 
-
-const getAllStoreTables = async () => {
-    setLoading(true);
-    const q = query(collection(db, "store"), where("category", "==", "table"));
-    onSnapshot(q, (querySnapshot) => {
-        const items = [];
-        querySnapshot.forEach((doc2) => {
-            items.push(doc2.data())
-        })
-        setStoreProducts(items);
-        setLoading(false);
-    })
-}
-
-const getAllStoreChairs = async () => {
-    setLoading(true);
-    const q = query(collection(db, "store"), where("category", "==", "chair"));
-    onSnapshot(q, (querySnapshot) => {
-        const items = [];
-        querySnapshot.forEach((doc2) => {
-            items.push(doc2.data())
-        })
-        setStoreProducts(items);
-        setLoading(false);
-    })
-}
 
 const getAllStoreClosets = async () => {
     setLoading(true);

@@ -10,14 +10,14 @@ import {
     query,
      } from "firebase/firestore";
 import {
-    CardMedia,
-    Typography,
-    Box,
-    Grid,
-    Button,
-    CardActionArea,
-    CircularProgress
-    } from '@material-ui/core';
+   CardMedia,
+   Typography,
+   Box,
+   Grid,
+   Button,
+   CardActionArea,
+   CircularProgress
+   } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -88,8 +88,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-
-export default function StoreProducts() {
+export default function StoreChairs() {
 const classes = useStyles();
 const [storeProducts, setStoreProducts] = useState([]);
 const [loading, setLoading] = useState(false);
@@ -98,7 +97,7 @@ const { user, app } = useAuth();
 const db = getFirestore(app);
 
 useEffect(() => {
-    getAllStoreTables()
+    getAllStoreChairs()
 }, []);
 
 if (loading) {
@@ -108,20 +107,6 @@ if (loading) {
        </div> 
     )
 };
-
-
-const getAllStoreTables = async () => {
-    setLoading(true);
-    const q = query(collection(db, "store"), where("category", "==", "table"));
-    onSnapshot(q, (querySnapshot) => {
-        const items = [];
-        querySnapshot.forEach((doc2) => {
-            items.push(doc2.data())
-        })
-        setStoreProducts(items);
-        setLoading(false);
-    })
-}
 
 const getAllStoreChairs = async () => {
     setLoading(true);
@@ -135,20 +120,6 @@ const getAllStoreChairs = async () => {
         setLoading(false);
     })
 }
-
-const getAllStoreClosets = async () => {
-    setLoading(true);
-    const q = query(collection(db, "store"), where("category", "==", "closet"));
-    onSnapshot(q, (querySnapshot) => {
-        const items = [];
-        querySnapshot.forEach((doc2) => {
-            items.push(doc2.data())
-        })
-        setStoreProducts(items);
-        setLoading(false);
-    })
-}
-
 
     return (
 <div>
@@ -232,14 +203,7 @@ const getAllStoreClosets = async () => {
 ))}      
 </Grid>   
 </div>
-}
-
-
-
-
-
-  
+}            
 </div>
-
     )
 }

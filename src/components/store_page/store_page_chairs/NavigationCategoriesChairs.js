@@ -43,9 +43,8 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-export default function NavigationCategories() {
+export default function NavigationCategoriesTables() {
 const classes = useStyles();
-const [isActive, setisActive] = useState(true)
     return (
 <div>
 
@@ -55,7 +54,8 @@ const [isActive, setisActive] = useState(true)
   justifyContent="center"
   alignItems="center"
 >
-<Grid item><Button className={classes.button_all_products_clicked} href="/store">All products</Button></Grid>
+
+<Grid item><Button className={classes.button_all_products} href="/store">All products</Button></Grid>
 
 <Grid item>
 <Grid
@@ -66,20 +66,19 @@ const [isActive, setisActive] = useState(true)
 >
 
 <Grid item>
-<Button className={classes.button} href="/store_tables">Tables</Button>
+    <Button className={classes.button} href="/store_tables">Tables</Button>
 </Grid>
 
 <Grid item>
-    <Button className={classes.button} href="/store_chairs">Chairs</Button>
+    <Button className={classes.button_clicked} href="/store_chairs">Chairs</Button>
 </Grid>
 
 <Grid item>
     <Button className={classes.button} href="/store_closets">Closets</Button>
 </Grid>
 
-</Grid>   
 </Grid>
-
+</Grid>
 
 </Grid>
 </div>
