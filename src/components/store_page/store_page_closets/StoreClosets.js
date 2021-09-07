@@ -90,16 +90,20 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function StoreProducts() {
-const classes = useStyles();
-const [storeProducts, setStoreProducts] = useState([]);
-const [loading, setLoading] = useState(false);
+    const classes = useStyles();
+    const [storeProducts, setStoreProducts] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [showAllClosets, setShowAllClosets] = useState(true)
+    const [showAllClosetsByLowToHighPrice, setShowAllClosetsByLowToHighPrice] = useState(false)
+    const [showAllClosetsByHighToLowPrice, setShowAllClosetsByHighToLowPrice] = useState(false)
+    const [showAllClosetsByName, setShowAllClosetsByName] = useState(false)
 
 const { user, app } = useAuth();
 const db = getFirestore(app);
 
 useEffect(() => {
     getAllStoreClosets()
-}, []);
+}, [showAllClosets, showAllClosetsByLowToHighPrice, showAllClosetsByHighToLowPrice, showAllClosetsByName]);
 
 if (loading) {
     return (
@@ -111,6 +115,7 @@ if (loading) {
 
 
 const getAllStoreClosets = async () => {
+    if (showAllClosets) {
     setLoading(true);
     const q = query(collection(db, "store"), where("category", "==", "closet"));
     onSnapshot(q, (querySnapshot) => {
@@ -121,13 +126,89 @@ const getAllStoreClosets = async () => {
         setStoreProducts(items);
         setLoading(false);
     })
+}   else if (showAllClosetsByLowToHighPrice) {
+    setLoading(true);
+    const q = query(collection(db, "store"), where("category", "==", "closet"), orderBy("price"));
+    onSnapshot(q, (querySnapshot) => {
+        const items = [];
+        querySnapshot.forEach((doc3) => {
+            items.push(doc3.data())
+        })
+        setStoreProducts(items);
+        setLoading(false);
+    })
+}   else if (showAllClosetsByHighToLowPrice) {
+    setLoading(true);
+    const q = query(collection(db, "store"), where("category", "==", "closet"), orderBy("price", "desc"));
+    onSnapshot(q, (querySnapshot) => {
+        const items = [];
+        querySnapshot.forEach((doc3) => {
+            items.push(doc3.data())
+        })
+        setStoreProducts(items);
+        setLoading(false);
+    })
+}   else if(showAllClosetsByName) {
+    setLoading(true);
+    const q = query(collection(db, "store"), where("category", "==", "closet"), orderBy("name"));
+    onSnapshot(q, (querySnapshot) => {
+        const items = [];
+        querySnapshot.forEach((doc3) => {
+            items.push(doc3.data())
+        })
+        setStoreProducts(items);
+        setLoading(false);
+    })
 }
-
+}
 
     return (
 <div>
 {user?
 <div>
+
+
+
+<div style={{paddingTop:'0.5rem'}}>
+<Grid
+  container
+  direction="row"
+  justifyContent="center"
+  alignItems="flex-start"
+>
+
+<Grid item xs={11}>
+    <Box display="flex" alignItems="center">
+<Typography style={{paddingRight:'0.3rem'}} variant="body2">Sort by:</Typography>
+<Button onClick={() => {
+    setShowAllClosets(false);
+    setShowAllClosetsByLowToHighPrice(false);
+    setShowAllClosetsByName(false);
+    setShowAllClosetsByLowToHighPrice(true);
+    }} size="small" variant="outlined" className={classes.btn_menu}>Low to high price</Button>
+<Button onClick={() => {
+    setShowAllClosets(false);
+    setShowAllClosetsByLowToHighPrice(false);
+    setShowAllClosetsByName(false);
+    setShowAllClosetsByHighToLowPrice(true)
+}} size="small" variant="outlined" className={classes.btn_menu}>High to low price</Button> 
+<Button onClick={() => {
+    setShowAllClosets(false);
+    setShowAllClosetsByLowToHighPrice(false);
+    setShowAllClosetsByHighToLowPrice(false)
+    setShowAllClosetsByName(true);
+}} size="small" variant="outlined" className={classes.btn_menu}>Name</Button> 
+</Box> 
+</Grid>
+
+</Grid>
+</div>
+
+
+{/* END OF MENU */}
+
+
+
 <Grid
     container
     direction="row"
@@ -168,6 +249,51 @@ const getAllStoreClosets = async () => {
 </div>
 :
 <div>
+
+
+
+
+<div style={{paddingTop:'0.5rem'}}>
+<Grid
+  container
+  direction="row"
+  justifyContent="center"
+  alignItems="flex-start"
+>
+
+<Grid item xs={11}>
+    <Box display="flex" alignItems="center">
+<Typography style={{paddingRight:'0.3rem'}} variant="body2">Sort by:</Typography>
+<Button onClick={() => {
+    setShowAllClosets(false);
+    setShowAllClosetsByLowToHighPrice(false);
+    setShowAllClosetsByName(false);
+    setShowAllClosetsByLowToHighPrice(true);
+    }} size="small" variant="outlined" className={classes.btn_menu}>Low to high price</Button>
+<Button onClick={() => {
+    setShowAllClosets(false);
+    setShowAllClosetsByLowToHighPrice(false);
+    setShowAllClosetsByName(false);
+    setShowAllClosetsByHighToLowPrice(true)
+}} size="small" variant="outlined" className={classes.btn_menu}>High to low price</Button> 
+<Button onClick={() => {
+    setShowAllClosets(false);
+    setShowAllClosetsByLowToHighPrice(false);
+    setShowAllClosetsByHighToLowPrice(false)
+    setShowAllClosetsByName(true);
+}} size="small" variant="outlined" className={classes.btn_menu}>Name</Button> 
+</Box> 
+</Grid>
+
+</Grid>
+</div>
+
+
+{/* END OF MENU */}
+
+
+
+
 <Grid
     container
     direction="row"

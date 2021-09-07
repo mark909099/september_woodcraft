@@ -92,13 +92,17 @@ export default function StoreChairs() {
 const classes = useStyles();
 const [storeProducts, setStoreProducts] = useState([]);
 const [loading, setLoading] = useState(false);
+const [showAllChairs, setShowAllChairs] = useState(true)
+const [showAllChairsByLowToHighPrice, setShowAllChairsByLowToHighPrice] = useState(false)
+const [showAllChairsByHighToLowPrice, setShowAllChairsByHighToLowPrice] = useState(false)
+const [showAllChairsByName, setShowAllChairsByName] = useState(false)
 
 const { user, app } = useAuth();
 const db = getFirestore(app);
 
 useEffect(() => {
     getAllStoreChairs()
-}, []);
+}, [showAllChairs, showAllChairsByLowToHighPrice, showAllChairsByHighToLowPrice, showAllChairsByName]);
 
 if (loading) {
     return (
@@ -109,6 +113,7 @@ if (loading) {
 };
 
 const getAllStoreChairs = async () => {
+    if (showAllChairs) {
     setLoading(true);
     const q = query(collection(db, "store"), where("category", "==", "chair"));
     onSnapshot(q, (querySnapshot) => {
@@ -119,12 +124,87 @@ const getAllStoreChairs = async () => {
         setStoreProducts(items);
         setLoading(false);
     })
+}   else if(showAllChairsByLowToHighPrice) {
+    setLoading(true);
+    const q = query(collection(db, "store"), where("category", "==", "chair"), orderBy("price"));
+    onSnapshot(q, (querySnapshot) => {
+        const items = [];
+        querySnapshot.forEach((doc3) => {
+            items.push(doc3.data())
+        })
+        setStoreProducts(items);
+        setLoading(false);
+    })
+}   else if(showAllChairsByHighToLowPrice) {
+    setLoading(true);
+    const q = query(collection(db, "store"), where("category", "==", "chair"), orderBy("price", "desc"));
+    onSnapshot(q, (querySnapshot) => {
+        const items = [];
+        querySnapshot.forEach((doc3) => {
+            items.push(doc3.data())
+        })
+        setStoreProducts(items);
+        setLoading(false);
+    })
+}   else if(showAllChairsByName) {
+    setLoading(true);
+    const q = query(collection(db, "store"), where("category", "==", "chair"), orderBy("name"));
+    onSnapshot(q, (querySnapshot) => {
+        const items = [];
+        querySnapshot.forEach((doc3) => {
+            items.push(doc3.data())
+        })
+        setStoreProducts(items);
+        setLoading(false);
+    })
+}
 }
 
     return (
 <div>
 {user?
 <div>
+
+
+<div style={{paddingTop:'0.5rem'}}>
+<Grid
+  container
+  direction="row"
+  justifyContent="center"
+  alignItems="flex-start"
+>
+
+<Grid item xs={11}>
+    <Box display="flex" alignItems="center">
+<Typography style={{paddingRight:'0.3rem'}} variant="body2">Sort by:</Typography>
+<Button onClick={() => {
+    setShowAllChairs(false);
+    setShowAllChairsByLowToHighPrice(false);
+    setShowAllChairsByName(false);
+    setShowAllChairsByLowToHighPrice(true);
+    }} size="small" variant="outlined" className={classes.btn_menu}>Low to high price</Button>
+<Button onClick={() => {
+    setShowAllChairs(false);
+    setShowAllChairsByLowToHighPrice(false);
+    setShowAllChairsByName(false);
+    setShowAllChairsByHighToLowPrice(true)
+}} size="small" variant="outlined" className={classes.btn_menu}>High to low price</Button> 
+<Button onClick={() => {
+    setShowAllChairs(false);
+    setShowAllChairsByLowToHighPrice(false);
+    setShowAllChairsByHighToLowPrice(false)
+    setShowAllChairsByName(true);
+}} size="small" variant="outlined" className={classes.btn_menu}>Name</Button> 
+</Box> 
+</Grid>
+
+</Grid>
+</div>
+
+
+{/* END OF MENU */}
+
+
 <Grid
     container
     direction="row"
@@ -165,6 +245,49 @@ const getAllStoreChairs = async () => {
 </div>
 :
 <div>
+
+
+<div style={{paddingTop:'0.5rem'}}>
+<Grid
+  container
+  direction="row"
+  justifyContent="center"
+  alignItems="flex-start"
+>
+
+<Grid item xs={11}>
+    <Box display="flex" alignItems="center">
+<Typography style={{paddingRight:'0.3rem'}} variant="body2">Sort by:</Typography>
+<Button onClick={() => {
+    setShowAllChairs(false);
+    setShowAllChairsByLowToHighPrice(false);
+    setShowAllChairsByName(false);
+    setShowAllChairsByLowToHighPrice(true);
+    }} size="small" variant="outlined" className={classes.btn_menu}>Low to high price</Button>
+<Button onClick={() => {
+    setShowAllChairs(false);
+    setShowAllChairsByLowToHighPrice(false);
+    setShowAllChairsByName(false);
+    setShowAllChairsByHighToLowPrice(true)
+}} size="small" variant="outlined" className={classes.btn_menu}>High to low price</Button> 
+<Button onClick={() => {
+    setShowAllChairs(false);
+    setShowAllChairsByLowToHighPrice(false);
+    setShowAllChairsByHighToLowPrice(false)
+    setShowAllChairsByName(true);
+}} size="small" variant="outlined" className={classes.btn_menu}>Name</Button> 
+</Box> 
+</Grid>
+
+</Grid>
+</div>
+
+
+{/* END OF MENU */}
+
+
+
+
 <Grid
     container
     direction="row"

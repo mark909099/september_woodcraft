@@ -155,21 +155,6 @@ const getAllStoreProducts = async () => {
 }
 
 
-const getAllStoreProductsByLowToHighPrice = async () => {
-    setLoading(true);
-    setShowAllProducts(false);
-    const q = query(collection(db, "store"), orderBy("price"));
-    onSnapshot(q, (querySnapshot) => {
-        const items = [];
-        querySnapshot.forEach((doc2) => {
-            items.push(doc2.data())
-        })
-        setStoreProducts(items);
-        setLoading(false);
-    })
-}
-
-
 const getAllStoreTables = async () => {
     setLoading(true);
     const q = query(collection(db, "store"), where("category", "==", "table"));
@@ -212,6 +197,11 @@ const getAllStoreClosets = async () => {
 
     return (
 <div>
+{user? 
+<div>
+
+
+
 <div style={{paddingTop:'0.5rem'}}>
 <Grid
   container
@@ -280,7 +270,7 @@ const getAllStoreClosets = async () => {
         </Box>
         <Typography variant="body2" className={classes.price}>Price: {storeProduct.price}</Typography>
         <Box className={classes.box_button}>
-        <Button className={classes.button}>Add to cart</Button>
+        <Button className={classes.button} onClick={()=> console.log(`${storeProduct.name} added to cart`)}>Add to cart</Button>
         </Box>
         </Box>
         </Box>
@@ -289,5 +279,114 @@ const getAllStoreClosets = async () => {
 </Grid>     
 </div>
 
-    )
+
+
+
+
+
+
+
+
+:
+<div>
+
+<div style={{paddingTop:'0.5rem'}}>
+<Grid
+  container
+  direction="row"
+  justifyContent="center"
+  alignItems="flex-start"
+>
+
+<Grid item xs={11}>
+    <Box display="flex" alignItems="center">
+<Typography style={{paddingRight:'0.3rem'}} variant="body2">Sort by:</Typography>
+<Button onClick={() => {
+    setShowAllProducts(false);
+    setShowAllProductsByLowToHighPrice(false);
+    setShowAllProductsByName(false);
+    setShowAllProductsByLowToHighPrice(true);
+    }} size="small" variant="outlined" className={classes.btn_menu}>Low to high price</Button>
+<Button onClick={() => {
+    setShowAllProducts(false);
+    setShowAllProductsByLowToHighPrice(false);
+    setShowAllProductsByName(false);
+    setShowAllProductsByHighToLowPrice(true)
+}} size="small" variant="outlined" className={classes.btn_menu}>High to low price</Button> 
+<Button onClick={() => {
+    setShowAllProducts(false);
+    setShowAllProductsByLowToHighPrice(false);
+    setShowAllProductsByHighToLowPrice(false)
+    setShowAllProductsByName(true);
+}} size="small" variant="outlined" className={classes.btn_menu}>Name</Button> 
+</Box> 
+</Grid>
+
+</Grid>
+</div>
+
+
+
+
+<Grid
+    container
+    direction="row"
+    justifyContent="center"
+    alignItems="center"
+  >
+{storeProducts.map((storeProduct) => (
+    
+      <Grid className={classes.grid_container} key={storeProduct.id} item xs={6} sm={6} md={4} lg={3}>
+        <Box className={classes.item}>
+        <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+        <Typography variant="h6" className={classes.header}>{storeProduct.name}</Typography>
+        <Typography className={classes.desc}>{storeProduct.desc}</Typography>
+        <Box className={classes.image_box} display="flex" justifyContent="center">
+        <CardActionArea onClick={() => {
+                                            try {
+                                                window.open(`${storeProduct.photo}`)
+                                            } catch (err) {
+                                                console.log(err)
+                                        } 
+        }}>
+        <CardMedia className={classes.product_image}
+          component="img"
+          alt=""
+          image={storeProduct.photo}
+        />
+        </CardActionArea>
+        </Box>
+        <Typography variant="body2" className={classes.price}>Price: {storeProduct.price}</Typography>
+        <Box className={classes.box_button}>
+        <Button className={classes.button} onClick={() => console.log('clicked by guest')}>Add to cart</Button>
+        </Box>
+        </Box>
+        </Box>
+    </Grid>
+))}      
+</Grid>     
+</div>
 }
+
+</div>
+
+)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

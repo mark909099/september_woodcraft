@@ -90,16 +90,20 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function StoreProducts() {
-const classes = useStyles();
-const [storeProducts, setStoreProducts] = useState([]);
-const [loading, setLoading] = useState(false);
+    const classes = useStyles();
+    const [storeProducts, setStoreProducts] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [showAllTables, setShowAllTables] = useState(true)
+    const [showAllTablesByLowToHighPrice, setShowAllTablesByLowToHighPrice] = useState(false)
+    const [showAllTablesByHighToLowPrice, setShowAllTablesByHighToLowPrice] = useState(false)
+    const [showAllTablesByName, setShowAllTablesByName] = useState(false)
 
 const { user, app } = useAuth();
 const db = getFirestore(app);
 
 useEffect(() => {
     getAllStoreTables()
-}, []);
+}, [showAllTables, showAllTablesByLowToHighPrice, showAllTablesByHighToLowPrice, showAllTablesByName]);
 
 if (loading) {
     return (
@@ -111,6 +115,7 @@ if (loading) {
 
 
 const getAllStoreTables = async () => {
+    if (showAllTables) {
     setLoading(true);
     const q = query(collection(db, "store"), where("category", "==", "table"));
     onSnapshot(q, (querySnapshot) => {
@@ -121,6 +126,41 @@ const getAllStoreTables = async () => {
         setStoreProducts(items);
         setLoading(false);
     })
+}   else if(showAllTablesByLowToHighPrice) {
+    setLoading(true);
+    const q = query(collection(db, "store"), where("category", "==", "table"), orderBy("price"));
+    onSnapshot(q, (querySnapshot) => {
+        const items = [];
+        querySnapshot.forEach((doc3) => {
+            items.push(doc3.data())
+        })
+        setStoreProducts(items);
+        setLoading(false);
+    })
+}   else if (showAllTablesByHighToLowPrice) {
+    setLoading(true);
+    const q = query(collection(db, "store"), where("category", "==", "table"), orderBy("price", "desc"));
+    onSnapshot(q, (querySnapshot) => {
+        const items = [];
+        querySnapshot.forEach((doc3) => {
+            items.push(doc3.data())
+        })
+        setStoreProducts(items);
+        setLoading(false);
+    })
+}   else if(showAllTablesByName) {
+    setLoading(true);
+    const q = query(collection(db, "store"), where("category", "==", "table"), orderBy("name"));
+    onSnapshot(q, (querySnapshot) => {
+        const items = [];
+        querySnapshot.forEach((doc3) => {
+            items.push(doc3.data())
+        })
+        setStoreProducts(items);
+        setLoading(false);
+    })
+}
+
 }
 
 const getAllStoreChairs = async () => {
@@ -154,6 +194,45 @@ const getAllStoreClosets = async () => {
 <div>
 {user?
 <div>
+
+<div style={{paddingTop:'0.5rem'}}>
+<Grid
+  container
+  direction="row"
+  justifyContent="center"
+  alignItems="flex-start"
+>
+
+<Grid item xs={11}>
+    <Box display="flex" alignItems="center">
+<Typography style={{paddingRight:'0.3rem'}} variant="body2">Sort by:</Typography>
+<Button onClick={() => {
+    setShowAllTables(false);
+    setShowAllTablesByLowToHighPrice(false);
+    setShowAllTablesByName(false);
+    setShowAllTablesByLowToHighPrice(true);
+    }} size="small" variant="outlined" className={classes.btn_menu}>Low to high price</Button>
+<Button onClick={() => {
+    setShowAllTables(false);
+    setShowAllTablesByLowToHighPrice(false);
+    setShowAllTablesByName(false);
+    setShowAllTablesByHighToLowPrice(true)
+}} size="small" variant="outlined" className={classes.btn_menu}>High to low price</Button> 
+<Button onClick={() => {
+    setShowAllTables(false);
+    setShowAllTablesByLowToHighPrice(false);
+    setShowAllTablesByHighToLowPrice(false)
+    setShowAllTablesByName(true);
+}} size="small" variant="outlined" className={classes.btn_menu}>Name</Button> 
+</Box> 
+</Grid>
+
+</Grid>
+</div>
+
+
+
+
 <Grid
     container
     direction="row"
@@ -162,7 +241,7 @@ const getAllStoreClosets = async () => {
   >
 {storeProducts.map((storeProduct) => (
     
-      <Grid className={classes.grid_container} key={storeProduct.id} item xs={6} sm={6} md={4} lg={3}>
+      <Grid className={classes.grid_container} key={storeProduct.name} item xs={6} sm={6} md={4} lg={3}>
         <Box className={classes.item}>
         <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
         <Typography variant="h6" className={classes.header}>{storeProduct.name}</Typography>
@@ -194,6 +273,45 @@ const getAllStoreClosets = async () => {
 </div>
 :
 <div>
+
+<div style={{paddingTop:'0.5rem'}}>
+<Grid
+  container
+  direction="row"
+  justifyContent="center"
+  alignItems="flex-start"
+>
+
+<Grid item xs={11}>
+    <Box display="flex" alignItems="center">
+<Typography style={{paddingRight:'0.3rem'}} variant="body2">Sort by:</Typography>
+<Button onClick={() => {
+    setShowAllTables(false);
+    setShowAllTablesByLowToHighPrice(false);
+    setShowAllTablesByName(false);
+    setShowAllTablesByLowToHighPrice(true);
+    }} size="small" variant="outlined" className={classes.btn_menu}>Low to high price</Button>
+<Button onClick={() => {
+    setShowAllTables(false);
+    setShowAllTablesByLowToHighPrice(false);
+    setShowAllTablesByName(false);
+    setShowAllTablesByHighToLowPrice(true)
+}} size="small" variant="outlined" className={classes.btn_menu}>High to low price</Button> 
+<Button onClick={() => {
+    setShowAllTables(false);
+    setShowAllTablesByLowToHighPrice(false);
+    setShowAllTablesByHighToLowPrice(false)
+    setShowAllTablesByName(true);
+}} size="small" variant="outlined" className={classes.btn_menu}>Name</Button> 
+</Box> 
+</Grid>
+
+</Grid>
+</div>
+
+
+
+
 <Grid
     container
     direction="row"
