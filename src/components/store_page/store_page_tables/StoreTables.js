@@ -4,7 +4,8 @@ import {
     collection,
     where,
     orderBy,
-    limit,
+    setDoc,
+    doc,
     getFirestore,
     onSnapshot,
     query,
@@ -19,6 +20,7 @@ import {
     CircularProgress
     } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     header: {
@@ -90,6 +92,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function StoreProducts() {
+    const history = useHistory();
     const classes = useStyles();
     const [storeProducts, setStoreProducts] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -161,32 +164,6 @@ const getAllStoreTables = async () => {
     })
 }
 
-}
-
-const getAllStoreChairs = async () => {
-    setLoading(true);
-    const q = query(collection(db, "store"), where("category", "==", "chair"));
-    onSnapshot(q, (querySnapshot) => {
-        const items = [];
-        querySnapshot.forEach((doc2) => {
-            items.push(doc2.data())
-        })
-        setStoreProducts(items);
-        setLoading(false);
-    })
-}
-
-const getAllStoreClosets = async () => {
-    setLoading(true);
-    const q = query(collection(db, "store"), where("category", "==", "closet"));
-    onSnapshot(q, (querySnapshot) => {
-        const items = [];
-        querySnapshot.forEach((doc2) => {
-            items.push(doc2.data())
-        })
-        setStoreProducts(items);
-        setLoading(false);
-    })
 }
 
 
@@ -263,7 +240,19 @@ const getAllStoreClosets = async () => {
         </Box>
         <Typography variant="body2" className={classes.price}>Price: {storeProduct.price}</Typography>
         <Box className={classes.box_button}>
-        <Button onClick={async () => {console.log(`clicked as a user with email ${user.email}`)}} className={classes.button}>Add to cart</Button>
+        <Button onClick={async () => {
+
+const data= {
+    name: storeProduct.name,
+    desc : storeProduct.desc,
+    photo: storeProduct.photo,
+    price: storeProduct.price,
+    qty: storeProduct.qty,
+    id_u : user.uid
+}
+await setDoc(doc(db, ("cart"), (user.uid + storeProduct.name)), data);
+
+        }} className={classes.button}>Add to cart</Button>
         </Box>
         </Box>
         </Box>
@@ -342,7 +331,7 @@ const getAllStoreClosets = async () => {
         </Box>
         <Typography variant="body2" className={classes.price}>Price: {storeProduct.price}</Typography>
         <Box className={classes.box_button}>
-        <Button onClick={async () => {console.log("clicked as a guest")}} className={classes.button}>Add to cart</Button>
+        <Button onClick={async () => {history.push('/')}} className={classes.button}>Add to cart</Button>
         </Box>
         </Box>
         </Box>

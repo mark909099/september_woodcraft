@@ -20,6 +20,7 @@ import {
     CircularProgress
     } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     header: {
@@ -80,6 +81,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function StoreProducts() {
+const history = useHistory();
 const classes = useStyles();
 const [storeProducts, setStoreProducts] = useState([]);
 const [loading, setLoading] = useState(false);
@@ -157,52 +159,11 @@ const getAllStoreProducts = async () => {
 }
 
 
-const getAllStoreTables = async () => {
-    setLoading(true);
-    const q = query(collection(db, "store"), where("category", "==", "table"));
-    onSnapshot(q, (querySnapshot) => {
-        const items = [];
-        querySnapshot.forEach((doc2) => {
-            items.push(doc2.data())
-        })
-        setStoreProducts(items);
-        setLoading(false);
-    })
-}
-
-const getAllStoreChairs = async () => {
-    setLoading(true);
-    const q = query(collection(db, "store"), where("category", "==", "chair"));
-    onSnapshot(q, (querySnapshot) => {
-        const items = [];
-        querySnapshot.forEach((doc2) => {
-            items.push(doc2.data())
-        })
-        setStoreProducts(items);
-        setLoading(false);
-    })
-}
-
-const getAllStoreClosets = async () => {
-    setLoading(true);
-    const q = query(collection(db, "store"), where("category", "==", "closet"));
-    onSnapshot(q, (querySnapshot) => {
-        const items = [];
-        querySnapshot.forEach((doc2) => {
-            items.push(doc2.data())
-        })
-        setStoreProducts(items);
-        setLoading(false);
-    })
-}
-
 
     return (
 <div>
 {user? 
 <div>
-
-
 
 <div style={{paddingTop:'0.5rem'}}>
 <Grid
@@ -371,7 +332,9 @@ await setDoc(doc(db, ("cart"), (user.uid + storeProduct.name)), data);
         </Box>
         <Typography variant="body2" className={classes.price}>Price: {storeProduct.price}</Typography>
         <Box className={classes.box_button}>
-        <Button className={classes.button} onClick={() => console.log('clicked by guest')}>Add to cart</Button>
+        <Button className={classes.button} onClick={() => {
+            history.push('/')
+        }}>Add to cart</Button>
         </Box>
         </Box>
         </Box>

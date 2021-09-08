@@ -65,7 +65,7 @@ const classes = useStyles();
 
 <Grid item xs={10} sm={5} className={classes.item_text}>
 <Box>
-<Fade duration={2500}>
+<Fade duration={4000}>
  <Typography className={classes.desc}
  variant="body1">
    Small or extra large size. Light or dark shade. Classic or modern design. Our closet will fit your need.
@@ -77,7 +77,7 @@ const classes = useStyles();
 <Grid item xs={0} sm={1}></Grid>
 
 </Grid> 
-
+<Divider className={classes.divider} />
 </Hidden>
 
 
@@ -116,6 +116,7 @@ const classes = useStyles();
 
 
 </Grid> 
+<Divider className={classes.divider} />
 </Hidden>
 
 

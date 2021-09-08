@@ -43,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
         paddingLeft:'1rem',
         paddingRight:'1rem',
         paddingBottom:'1rem',
+        borderRadius:'15%',
         [theme.breakpoints.up('xs')]: {
             height:'170px',
         },

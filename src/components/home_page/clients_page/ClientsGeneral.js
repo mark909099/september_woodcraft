@@ -13,7 +13,6 @@ const useStyles = makeStyles((theme) => ({
     header: {
         textAlign:'center',
         paddingTop:'0.5rem',
-        textDecoration:'underline',
         fontFamily:'Times new roman',
         [theme.breakpoints.up('xs')]: {
             fontSize:'6rem'
