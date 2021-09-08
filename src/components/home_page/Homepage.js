@@ -9,6 +9,7 @@ import { Fade } from 'react-reveal';
 import ProductView from './view_page/ProductView';
 import OurStoryGeneral from './our_story_page/OurStoryGeneral';
 import ExtraPadding from './our_story_page/ExtraPadding';
+import ClientsGeneral from './clients_page/ClientsGeneral';
 
 export default function Homepage() {
 const { user } = useAuth();
@@ -22,9 +23,8 @@ const { user } = useAuth();
 </Fade>
 <ProductView />
 <ExtraPadding />
-<Fade duration={5000}>
 <OurStoryGeneral />
-</Fade>
+<ClientsGeneral />
 </div>
 :
 <div>
@@ -34,9 +34,8 @@ const { user } = useAuth();
 </Fade>
 <ProductView />
 <ExtraPadding />
-<Fade duration={5000}>
 <OurStoryGeneral />
-</Fade>
+<ClientsGeneral />
 </div>
 }
      

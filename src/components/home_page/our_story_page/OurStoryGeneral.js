@@ -1,7 +1,10 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
+import {
+    Grid,
+} from '@material-ui/core';
 import { Fade } from 'react-reveal';
+import OurStoryText from './OurStoryText';
 
 const useStyles = makeStyles((theme) => ({
     paper1: {
@@ -36,8 +39,20 @@ export default function OurStoryGeneral() {
 const classes = useStyles();
     return (
 <div className={classes.paper1}>
-<Fade right duration={3000}>
-<Typography className={classes.header}>Our Story</Typography>  
+<Fade duration={3000}>
+<div>
+<Grid
+  container
+  direction="row"
+  justifyContent="center"
+  alignItems="center"
+>
+
+<Grid item xs={12} sm={8} md={6} lg={5}><OurStoryText /></Grid>
+<Grid item xs={12} sm={4} md={6} lg={7}></Grid>
+
+</Grid>
+</div>
 </Fade>
 </div>
     )

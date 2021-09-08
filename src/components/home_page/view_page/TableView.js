@@ -64,7 +64,7 @@ const classes = useStyles();
 
 
 <Grid item xs={12} sm={6}>
-<Fade right duration={2500}>
+<Fade delay={1000} right duration={2500}>
 <Box display="flex" justifyContent="center">
 <CardMedia className={classes.photo}
           component="img"
@@ -103,7 +103,7 @@ const classes = useStyles();
 
 
 <Grid item xs={12} sm={6}>
-<Fade right duration={2500}>
+<Fade delay={1000} right duration={2500}>
 <Box display="flex" justifyContent="center">
 <CardMedia className={classes.photo}
           component="img"
