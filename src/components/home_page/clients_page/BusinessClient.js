@@ -11,7 +11,8 @@ import Fade from 'react-reveal/Fade';
 
 const useStyles = makeStyles((theme) => ({
     header: {
-        textAlign:'center',
+        textAlign:'flex-start',
+        paddingLeft:'1.5rem',
         paddingBottom:'1.5rem',
         [theme.breakpoints.up('xs')]: {
             fontSize:'4rem'
@@ -28,7 +29,8 @@ const useStyles = makeStyles((theme) => ({
         fontFamily:'David',
         paddingTop:'1rem',
         paddingBottom:'1.5rem',
-        paddingLeft:'2rem',
+        paddingLeft:'1.5rem',
+        paddingRight:'1.5rem',
         [theme.breakpoints.up('xs')]: {
             fontSize:'2rem'
         },
@@ -59,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
     },
     divider: {
         marginTop:'4rem',
-        marginBottom:'4rem',
+        marginBottom:'8rem',
       }
 }))
 
@@ -68,7 +70,7 @@ const classes = useStyles();
     return (
 <div className={classes.paper1}>
 <Box letterSpacing={5}>
-<Fade duration={1000}>
+<Fade duration={500}>
 <Typography className={classes.header}>Business</Typography>            
 </Fade>
 </Box>

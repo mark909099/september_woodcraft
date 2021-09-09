@@ -11,7 +11,8 @@ import Fade from 'react-reveal/Fade';
 
 const useStyles = makeStyles((theme) => ({
     header: {
-        textAlign:'center',
+        textAlign:'flex-start',
+        paddingLeft:'1.5rem',
         paddingTop:'1rem',
         paddingBottom:'1.5rem',
         [theme.breakpoints.up('xs')]: {
@@ -29,7 +30,8 @@ const useStyles = makeStyles((theme) => ({
         fontFamily:'David',
         paddingTop:'1rem',
         paddingBottom:'1.5rem',
-        paddingLeft:'2rem',
+        paddingLeft:'1.5rem',
+        paddingRight:'1.5rem',
         [theme.breakpoints.up('xs')]: {
             fontSize:'2rem'
         },
@@ -69,7 +71,7 @@ const classes = useStyles();
     return (
 <div className={classes.paper1}>
 <Box letterSpacing={5}>
-<Fade duration={1000}>
+<Fade duration={500}>
 <Typography className={classes.header}>Home</Typography>            
 </Fade>
 </Box>
@@ -92,7 +94,7 @@ const classes = useStyles();
 </Grid>
 
 <Grid item xs={6} sm={4}>
-<Fade delay={2000} duration={2500}>
+<Fade delay={1000} duration={2500}>
 <CardMedia className={classes.home_image}
           component="img"
           alt="home_furniture1"
@@ -102,7 +104,7 @@ const classes = useStyles();
 </Grid>
 
 <Grid item xs={6} sm={4}>
-<Fade delay={2000} duration={2500}>
+<Fade delay={1000} duration={2500}>
 <CardMedia className={classes.home_image}
           component="img"
           alt="home_furniture2"

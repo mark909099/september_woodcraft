@@ -10,6 +10,8 @@ import ProductView from './view_page/ProductView';
 import OurStoryGeneral from './our_story_page/OurStoryGeneral';
 import ExtraPadding from './our_story_page/ExtraPadding';
 import ClientsGeneral from './clients_page/ClientsGeneral';
+import GoToStorePage from './interesting_page/GoToStorePage';
+import Footer from './footer_page/Footer';
 
 export default function Homepage() {
 const { user } = useAuth();
@@ -25,6 +27,8 @@ const { user } = useAuth();
 <ExtraPadding />
 <OurStoryGeneral />
 <ClientsGeneral />
+<GoToStorePage />
+
 </div>
 :
 <div>
@@ -36,6 +40,8 @@ const { user } = useAuth();
 <ExtraPadding />
 <OurStoryGeneral />
 <ClientsGeneral />
+<GoToStorePage />
+
 </div>
 }
      
