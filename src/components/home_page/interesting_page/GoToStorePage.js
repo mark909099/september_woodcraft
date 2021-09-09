@@ -89,15 +89,18 @@ const classes = useStyles();
 >
 <Grid item xs={12}>
 <Box display="flex" justifyContent="flex-start">
-<Fade right duration={3000}>
-<Typography className={classes.header} variant-="h3">Explore our products,</Typography>  
-</Fade>
+
+<Typography className={classes.header} variant-="h3">
+<Fade right cascade duration={1000}>    
+Explore our products,
+</Fade>    
+</Typography>  
 </Box>
 </Grid>
 
 <Grid item xs={12}>
 <Box display="flex" justifyContent="center">
-<Fade delay={1000} duration={2000}>
+<Fade delay={1000} duration={3000}>
 <Typography className={classes.text} variant-="h3">Choose your furniture now.</Typography>  
 </Fade>
 </Box>

@@ -19,6 +19,8 @@ import StoreTablesGeneral from './components/store_page/store_page_tables/StoreT
 import StoreChairsGeneral from './components/store_page/store_page_chairs/StoreChairsGeneral';
 import StoreClosetsGeneral from './components/store_page/store_page_closets/StoreClosetsGeneral';
 import CartGeneral from './components/cart_page/CartGeneral';
+import AboutGeneral from './components/about_page/AboutGeneral';
+import ContactGeneral from './components/contact_page/ContactGeneral';
 
 function App() {
   return (
@@ -56,6 +58,12 @@ function App() {
     </Route>
     <Route exact path="/cart">
       <CartGeneral />
+    </Route>
+    <Route exact path="/about">
+      <AboutGeneral />
+    </Route>
+    <Route exact path="/contact">
+      <ContactGeneral />
     </Route>
   </Switch>
 </Router>
