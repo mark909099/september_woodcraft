@@ -5,7 +5,7 @@ import {
 } from '@material-ui/core';
 import Company from './Company';
 import Customer from './Customer';
-import Navigation from './Navigation';
+import NavigationUser from './NavigationUser';
 import Fade from 'react-reveal/Fade';
 
 const useStyles = makeStyles((theme) => ({
@@ -91,7 +91,7 @@ const classes = useStyles();
 >
 <Grid item xs={4}><Company /></Grid>
 <Grid item xs={4}><Customer /></Grid>  
-<Grid item xs={4}><Navigation /></Grid>  
+<Grid item xs={4}><NavigationUser /></Grid>  
 </Grid>   
 </Fade>       
 </div>

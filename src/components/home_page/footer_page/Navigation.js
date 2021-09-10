@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-export default function Contact() {
+export default function Navigation() {
 const classes = useStyles();
     return (
 <div>
@@ -47,10 +47,10 @@ const classes = useStyles();
   justifyContent="center"
   alignItems="center"
 >
-<Grid item xs={12}><Typography className={classes.header}>Contact</Typography></Grid> 
-<Grid item xs={12}><Button disableRipple='true' className={classes.btn}>Office</Button></Grid>
-<Grid item xs={12}><Button disableRipple='true' className={classes.btn}>Customer support</Button></Grid>
-<Grid item xs={12}><Button disableRipple='true' className={classes.btn}>Business</Button></Grid>           
+<Grid item xs={12}><Typography className={classes.header}>Navigation</Typography></Grid> 
+<Grid item xs={12}><Button disableRipple='true' className={classes.btn} href="/login">Login</Button></Grid>
+<Grid item xs={12}><Button disableRipple='true' className={classes.btn} href="/contact">Contact</Button></Grid>
+<Grid item xs={12}><Button disableRipple='true' className={classes.btn} href="/about">About</Button></Grid>           
 
 </Grid>             
 </div>

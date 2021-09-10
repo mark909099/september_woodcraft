@@ -10,6 +10,8 @@ import {
 } from '@material-ui/core';
 import { Fade } from 'react-reveal';
 import Footer from '../footer_page/Footer';
+import FooterUser from '../footer_page/FooterUser';
+import { useAuth } from '../../../firebase/useAuth';
 
 const useStyles = makeStyles((theme) => ({
     paper1: {
@@ -79,6 +81,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function GoToStorePage() {
 const classes = useStyles();
+const { user } = useAuth();
     return (
 <div className={classes.paper1}>
 <Grid
@@ -114,7 +117,11 @@ Explore our products,
 </Grid>
  </Grid>
 
-<Footer />        
+{user?
+<FooterUser />
+:
+<Footer />
+}      
 </div>
     )
 }

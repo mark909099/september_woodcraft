@@ -7,7 +7,6 @@ import { useAuth } from '../../firebase/useAuth';
 import {
     Typography,
   } from '@material-ui/core';
-import GoogleLogin from './GoogleLogin';
 
 const useStyles = makeStyles((theme) => ({
     header: {
