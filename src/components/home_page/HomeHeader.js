@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
 export default function HomeHeader() {
 const classes = useStyles();
     return (
-
+<Fade duration={7000}>
 <div className={classes.paper1}>
 <Fade delay={1500} duration={1500}>
 <Typography variant="h2" className={classes.text_header}>September Woodcraft</Typography>  
@@ -60,5 +60,6 @@ Furniture that fits your needs
 
 
 </div>
+</Fade>
     )
 }

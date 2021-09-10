@@ -38,9 +38,8 @@ const useStyles = makeStyles((theme) => ({
 export default function OurStoryGeneral() {
 const classes = useStyles();
     return (
-<div className={classes.paper1}>
 <Fade duration={3000}>
-<div>
+<div className={classes.paper1}>
 <Grid
   container
   direction="row"
@@ -52,8 +51,8 @@ const classes = useStyles();
 <Grid item xs={12} sm={4} md={6} lg={7}></Grid>
 
 </Grid>
+
 </div>
 </Fade>
-</div>
     )
 }

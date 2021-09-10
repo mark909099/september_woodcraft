@@ -28,7 +28,6 @@ const { user } = useAuth();
 <OurStoryGeneral />
 <ClientsGeneral />
 <GoToStorePage />
-
 </div>
 :
 <div>
@@ -41,7 +40,6 @@ const { user } = useAuth();
 <OurStoryGeneral />
 <ClientsGeneral />
 <GoToStorePage />
-
 </div>
 }
      

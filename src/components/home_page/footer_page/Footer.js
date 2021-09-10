@@ -2,15 +2,11 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
     Grid,
-    Typography,
-    Box,
-    CardMedia,
-    Divider,
-    Button
 } from '@material-ui/core';
 import Company from './Company';
 import Customer from './Customer';
 import Contact from './Contact';
+import Fade from 'react-reveal/Fade';
 
 const useStyles = makeStyles((theme) => ({
     paper1: {
@@ -86,6 +82,7 @@ export default function Footer() {
 const classes = useStyles();
     return (
 <div className={classes.paper1}>
+<Fade duration={500}>
 <Grid
   container
   direction="row"
@@ -94,8 +91,9 @@ const classes = useStyles();
 >
 <Grid item xs={4}><Company /></Grid>
 <Grid item xs={4}><Customer /></Grid>  
-<Grid item xs={4}><Contact /></Grid>    
-</Grid>        
+<Grid item xs={4}><Contact /></Grid>  
+</Grid>   
+</Fade>       
 </div>
     )
 }

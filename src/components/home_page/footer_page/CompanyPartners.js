@@ -45,7 +45,7 @@ const handleClose = () => {
 open={open}
 onClose={handleClose}
 >
-<DialogTitle id="alert-dialog-title">{"Wait. . . this website is a demo project, it doesnt not include real partners. This is a showoff button ;)"}</DialogTitle>
+<DialogTitle id="alert-dialog-title">{"This website is a demo project, it doesnt not include real partners."}</DialogTitle>
 <DialogContent>
           <DialogContentText id="alert-dialog-description">
             But, keep browsing the website and enjoy!

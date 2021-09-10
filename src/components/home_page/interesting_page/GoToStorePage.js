@@ -100,14 +100,14 @@ Explore our products,
 
 <Grid item xs={12}>
 <Box display="flex" justifyContent="center">
-<Fade delay={1000} duration={3000}>
+<Fade delay={500} duration={3000}>
 <Typography className={classes.text} variant-="h3">Choose your furniture now.</Typography>  
 </Fade>
 </Box>
 </Grid>
 <Grid item xs={12}>
 <Box letterSpacing={1} display="flex" justifyContent="center">
-<Fade delay={1000} duration={2000}>
+<Fade delay={500} duration={2000}>
 <Button href="/store" variant="outlined" className={classes.store_button}>Go to store</Button>
 </Fade>
 </Box>
