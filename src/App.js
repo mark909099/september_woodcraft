@@ -21,6 +21,8 @@ import StoreClosetsGeneral from './components/store_page/store_page_closets/Stor
 import CartGeneral from './components/cart_page/CartGeneral';
 import AboutGeneral from './components/about_page/AboutGeneral';
 import ContactGeneral from './components/contact_page/ContactGeneral';
+import TermsOfUseGeneral from './components/home_page/footer_page/TermsOfUseGeneral';
+import PrivacyPolicyGeneralUser from './components/home_page/footer_page/PrivacyPolicyGeneralUser';
 
 function App() {
   return (
@@ -64,6 +66,12 @@ function App() {
     </Route>
     <Route exact path="/contact">
       <ContactGeneral />
+    </Route>
+    <Route exact path="/terms_of_use">
+      <TermsOfUseGeneral />
+    </Route>
+    <Route exact path="/privacy_policy">
+      <PrivacyPolicyGeneralUser />
     </Route>
   </Switch>
 </Router>

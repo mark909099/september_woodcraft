@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     },
     sub_header: {
       [theme.breakpoints.up('xs')]: {
-        fontSize:'1rem'
+        fontSize:'1.2rem'
       },
       [theme.breakpoints.up('sm')]: {
         fontSize:'1.5rem'
@@ -58,9 +58,9 @@ const useStyles = makeStyles((theme) => ({
             fontSize:'1.5rem'
           },
     },
-    text_email: {
+    text_phone: {
       textAlign:'flex-start',
-      paddingBottom:'1rem',
+      paddingTop:'1rem',
       [theme.breakpoints.up('xs')]: {
           fontSize:'1rem'
         },
@@ -69,6 +69,21 @@ const useStyles = makeStyles((theme) => ({
         },
         [theme.breakpoints.up('md')]: {
           fontSize:'1.5rem'
+        },
+  },
+    text_email: {
+      textAlign:'flex-start',
+      [theme.breakpoints.up('xs')]: {
+          fontSize:'1rem',
+          paddingBottom:'1rem',
+        },
+        [theme.breakpoints.up('sm')]: {
+          fontSize:'1.2rem',
+          paddingBottom:'1rem',
+        },
+        [theme.breakpoints.up('md')]: {
+          fontSize:'1.5rem',
+          paddingBottom:'1.2rem',
         },
   }
 }))
@@ -84,61 +99,71 @@ const classes = useStyles();
   alignItems="flex-start"
 >
 <Grid item>
-<Typography className={classes.header}>Office</Typography>        
+<Typography className={classes.header}>Shop</Typography>        
 </Grid> 
 <Grid item>
 <Typography className={classes.text}>Adress: Israel, Haifa, random St. 42</Typography>        
 </Grid>
 <Grid item>
-<Typography className={classes.text}>Phone: 777-123-321-777</Typography>        
+<Typography className={classes.sub_header}>Opening hours:</Typography>        
+</Grid>
+<Grid item>
+<Typography className={classes.text}>Sunday-Thursday: 9:00-21:00</Typography>        
+</Grid>
+<Grid item>
+<Typography className={classes.text}>Friday: 8:00-14:00</Typography>        
+</Grid>
+<Grid item>
+<Typography className={classes.text}>Saturday: 9:00-22:00</Typography>        
+</Grid>
+<Grid item>
+<Typography className={classes.text_phone}>Phone: 777-123-321-777</Typography>        
 </Grid>
 <Grid item>
 <Typography className={classes.text_email}>Email: september-woodcraft@gmail.com</Typography>        
 </Grid>
 
+
+
+<Grid item>
+<Typography className={classes.header_sales}>Office</Typography>        
+</Grid>
+<Grid item>
+<Typography className={classes.text}>Adress: Israel, Haifa, random St. 43 </Typography>        
+</Grid>
+<Grid item>
+<Typography className={classes.sub_header}>Opening hours:</Typography>        
+</Grid>
+<Grid item>
+<Typography className={classes.text}>Sunday-Thursday: 8:00-16:00</Typography>        
+</Grid>
+<Grid item>
+<Typography className={classes.text_phone}>Phone: 888-123-321-888</Typography>        
+</Grid>
+<Grid item>
+<Typography className={classes.text_email}>Email: september-woodcraft-of@gmail.com</Typography>        
+</Grid>
+
+
 <Grid item>
 <Typography className={classes.header_sales}>Sales</Typography>        
 </Grid>
 <Grid item>
-<Typography className={classes.sub_header}>USA</Typography>        
-</Grid>  
-<Grid item>
-<Typography className={classes.text}>Adress: KY, Hopkinsvile, Southwind St. 105 </Typography>        
+<Typography className={classes.text}>Adress: Haifa, Israel, random St. 44 </Typography>        
 </Grid>
 <Grid item>
-<Typography className={classes.text}>Phone: 888-123-321-888</Typography>        
+<Typography className={classes.sub_header}>Opening hours:</Typography>        
 </Grid>
 <Grid item>
-<Typography className={classes.text_email}>Email: september-woodcraft-usa@gmail.com</Typography>        
-</Grid>
-
-
-<Grid item>
-<Typography className={classes.sub_header}>China</Typography>        
-</Grid>  
-<Grid item>
-<Typography className={classes.text}>Adress: Shanghai, Jiading District, Little Chinatown St. 555 </Typography>        
+<Typography className={classes.text}>Sunday-Thursday: 8:00-16:00</Typography>        
 </Grid>
 <Grid item>
-<Typography className={classes.text}>Phone: 999-123-321-999</Typography>        
+<Typography className={classes.text_phone}>Phone: 999-123-321-999</Typography>        
 </Grid>
 <Grid item>
-<Typography className={classes.text_email}>Email: september-woodcraft-china@gmail.com</Typography>        
+<Typography className={classes.text_email}>Email: september-woodcraft-sales@gmail.com</Typography>        
 </Grid>
 
-
-<Grid item>
-<Typography className={classes.sub_header}>Europe</Typography>        
-</Grid>  
-<Grid item>
-<Typography className={classes.text}>Adress: Italy, Rome, Ristretto St. 22 </Typography>        
-</Grid>
-<Grid item>
-<Typography className={classes.text}>Phone: 101-123-321-909</Typography>        
-</Grid>
-<Grid item>
-<Typography className={classes.text_email}>Email: september-woodcraft-eu@gmail.com</Typography>        
-</Grid>
 
 </Grid>
 

@@ -8,21 +8,12 @@ import Box from '@material-ui/core/Box';
 import IconButton from '@material-ui/core/IconButton';
 import CardMedia from '@material-ui/core/CardMedia';
 import Menu from './Menu';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
+    
   },
-  menuButton: {
-    marginRight: theme.spacing(1),
-  },
-  empty_distance: {
-    flexGrow:1,
-  },
-  alt: {
-      fontSize:'0.7rem',
-      color:'white'
-  }
 }));
 
 
@@ -33,21 +24,39 @@ const classes = useStyles();
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
+        <Grid
+          container
+          direction="row"
+          justifyContent="flex-start"
+          alignItems="center"
+          >
+
+          <Grid item xs={1}>
+          <Box display="flex" justifyContent="flex-start">
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <Menu />
           </IconButton>
-          <Typography variant="h6">
+          
             <Button href='/'>
-          <CardMedia className={classes.alt}
+          <CardMedia
           component="img"
           alt="September Woodcraft"
           height="40"
           image="/images/woodcraft_logo.png"
-        />
-            </Button>
-          </Typography>
-          <Box className={classes.empty_distance}></Box>
-          <Button href='/login' color="inherit">Login</Button>
+          />
+          </Button>
+          </Box>
+          </Grid>
+
+          <Grid item xs={10}></Grid>
+
+          <Grid item xs={1}>
+          <Box display="flex" justifyContent="flex-end">
+          <Button style={{fontSize:'1.1rem'}} href='/login' color="inherit">Login</Button>
+          </Box>
+          </Grid>
+
+          </Grid>
         </Toolbar>
       </AppBar>
 

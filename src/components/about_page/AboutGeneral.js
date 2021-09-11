@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
     },
     text: {
         fontFamily:'Verdana',
+        paddingBottom:'1rem'
     }
 }))
 
@@ -41,9 +42,11 @@ const { user } = useAuth();
   justifyContent="center"
   alignItems="center"
 >
+
 <Grid item xs={12}><Typography className={classes.header} variant="h3">About</Typography></Grid>   
-<Grid item xs={12}><Typography className={classes.text} variant="body1">September Woodcraft is a demo project, Developed by Mark Lapin. This site does NOT constitue a real company or real products, it is built for demo purposes only.</Typography></Grid>  
-<Grid item xs={12}><Typography className={classes.text} variant="body1">You are free to browse and enjoy the website.</Typography></Grid> 
+<Grid item xs={12}><Typography className={classes.text} variant="body1">September Woodcraft is a demo project. This website does NOT constitue a real company or real products, it is built for demo purposes only.</Typography></Grid>  
+<Grid item xs={12}><Typography className={classes.text} variant="body1">Developed by Mark Lapin ©2021 All rights reserved.</Typography></Grid> 
+
 </Grid> 
 
 </div>
@@ -56,9 +59,11 @@ const { user } = useAuth();
   justifyContent="center"
   alignItems="center"
 >
+
 <Grid item xs={12}><Typography className={classes.header} variant="h3">About</Typography></Grid>   
-<Grid item xs={12}><Typography className={classes.text} variant="body1">September Woodcraft is a demo project, Developed by Mark Lapin. This site does NOT constitue a real company or real products, it is built for demo purposes only.</Typography></Grid>  
-<Grid item xs={12}><Typography className={classes.text} variant="body1">You are free to browse and enjoy the website.</Typography></Grid> 
+<Grid item xs={12}><Typography className={classes.text} variant="body1">September Woodcraft is a demo project. This website does NOT constitue a real company or real products, it is built for demo purposes only.</Typography></Grid>  
+<Grid item xs={12}><Typography className={classes.text} variant="body1">Developed by Mark Lapin ©2021 All rights reserved.</Typography></Grid> 
+
 </Grid> 
 </div>
 }           
