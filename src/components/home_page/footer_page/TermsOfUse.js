@@ -63,6 +63,13 @@ const classes = useStyles();
 
 </Typography> 
 
+<Typography variant="h4">7. User data deletion instructions</Typography> 
+<Typography variant="body1">
+
+<p>If you wish to delete your user, go to your profle page and click on "delete user".</p>
+
+</Typography> 
+
 </div>
     )
 }

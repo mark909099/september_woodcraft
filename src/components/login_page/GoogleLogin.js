@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState } from 'react';
 import { useAuth } from '../../firebase/useAuth';
 import {
     Grid,
@@ -27,7 +27,7 @@ const classes = useStyles();
 
 const [fadeGoogle, setFadeGoogle] = useState(false);
 
-const {signGoogle } = useAuth();
+const { signGoogle } = useAuth();
 
 setTimeout(() => {
   setFadeGoogle(true);

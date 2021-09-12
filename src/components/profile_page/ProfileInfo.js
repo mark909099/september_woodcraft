@@ -15,6 +15,7 @@ import {
     GoogleAuthProvider,
     signInWithRedirect,
     updateProfile,
+    deleteUser,
     signOut,
     onAuthStateChanged,
   } from "firebase/auth";
@@ -43,7 +44,7 @@ const useStyles = makeStyles({
 
 export default function ProfileInfo() {
 const classes = useStyles();
-const { user } = useAuth();
+const { user, deleteUser1 } = useAuth();
 const history = useHistory();
 const { register, handleSubmit, control, formState: { errors } } = useForm();
 const [state, setState] = ('')
@@ -80,14 +81,14 @@ const showValue = () => console.log(name)
 <Typography variant="h3">Profile</Typography>
 <Typography variant="body1">Name: {user.displayName}</Typography>
 <Typography variant="body1">Email: {user.email}</Typography>
-{/* <button onClick={async () => go()}>goog</button> */}
+
 </Grid>
 <form>
 <input type="text" value={name} onChange={changeName} />
 <button onClick={showValue} type="submit">change name</button>
 </form>
 
-
+<Button onClick={deleteUser1}>delete user</Button>
 </div>
     )
 }

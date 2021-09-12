@@ -44,7 +44,7 @@ const { user } = useAuth();
 >
 
 <Grid item xs={12}><Typography className={classes.header} variant="h3">About</Typography></Grid>   
-<Grid item xs={12}><Typography className={classes.text} variant="body1">September Woodcraft is a demo project. This website does NOT constitue a real company or real products, it is built for demo purposes only.</Typography></Grid>  
+<Grid item xs={12}><Typography className={classes.text} variant="body1">September Woodcraft is a demo project. This website does not represent a real company or real products, it is built for demo purposes only.</Typography></Grid>  
 <Grid item xs={12}><Typography className={classes.text} variant="body1">Developed by Mark Lapin ©2021 All rights reserved.</Typography></Grid> 
 
 </Grid> 

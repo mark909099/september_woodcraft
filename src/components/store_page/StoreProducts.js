@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../firebase/useAuth';
 import {
     collection,
-    where,
     orderBy,
     getFirestore,
     onSnapshot,
@@ -17,10 +16,16 @@ import {
     Grid,
     Button,
     CardActionArea,
-    CircularProgress
+    CircularProgress,
+    DialogContentText,
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    Paper
     } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from "react-router-dom";
+import StoreProductsDialog from './StoreProductsDialog';
 
 const useStyles = makeStyles((theme) => ({
     header: {
@@ -76,6 +81,10 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.up('sm')]: {
             width:'150px',   
         },
+    },
+    bg_dialog: {
+        backgroundImage: 'url(/images/dialog_bg2.jpg)',
+        backgroundSize:'cover'
     }
 }))
 
@@ -89,6 +98,15 @@ const [showAllProducts, setShowAllProducts] = useState(true)
 const [showAllProductsByLowToHighPrice, setShowAllProductsByLowToHighPrice] = useState(false)
 const [showAllProductsByHighToLowPrice, setShowAllProductsByHighToLowPrice] = useState(false)
 const [showAllProductsByName, setShowAllProductsByName] = useState(false)
+const [open, setOpen] = useState(false);
+const handleClickOpen = () => {
+    setOpen(true);
+}
+
+const handleClose = () => {
+    setOpen(false);
+}
+
 
 const { user, app } = useAuth();
 const db = getFirestore(app);
@@ -332,16 +350,31 @@ await setDoc(doc(db, ("cart"), (user.uid + storeProduct.name)), data);
         </Box>
         <Typography variant="body2" className={classes.price}>Price: {storeProduct.price}</Typography>
         <Box className={classes.box_button}>
-        <Button className={classes.button} onClick={() => {
-            history.push('/')
-        }}>Add to cart</Button>
+        <Button className={classes.button} onClick={handleClickOpen}>Add to cart</Button>
         </Box>
         </Box>
         </Box>
+        <div>
+<Paper>
+<Dialog className={classes.bg_dialog}
+open={open}
+onClose={handleClose}
+>
+<DialogTitle id="alert-dialog-title">{"This website is a demo project, it doesnt not include real partners."}</DialogTitle>
+<DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            But, keep browsing the website and enjoy!
+          </DialogContentText>
+        </DialogContent>
+</Dialog>  
+</Paper>      
+</div>
     </Grid>
+
 ))}      
 </Grid>     
 </div>
+
 }
 
 </div>

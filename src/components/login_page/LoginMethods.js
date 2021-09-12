@@ -4,6 +4,7 @@ import {
     Grid,
   } from '@material-ui/core';
 import GoogleLogin from './GoogleLogin';
+import FacebookLogin from './FacebookLogin';
 
 export default function LoginMethods() {
     return (
@@ -16,6 +17,7 @@ export default function LoginMethods() {
 >
 <Grid item><LoginPasswordlessTotal /></Grid>
 <Grid item><GoogleLogin /></Grid>
+<Grid item><FacebookLogin /></Grid>
 
 </Grid>
             

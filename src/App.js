@@ -23,6 +23,7 @@ import AboutGeneral from './components/about_page/AboutGeneral';
 import ContactGeneral from './components/contact_page/ContactGeneral';
 import TermsOfUseGeneral from './components/home_page/footer_page/TermsOfUseGeneral';
 import PrivacyPolicyGeneralUser from './components/home_page/footer_page/PrivacyPolicyGeneralUser';
+import FrequentlyAskedQuestionsGeneral from './components/home_page/footer_page/FrequentlyAskedQuestionsGeneral';
 
 function App() {
   return (
@@ -72,6 +73,9 @@ function App() {
     </Route>
     <Route exact path="/privacy_policy">
       <PrivacyPolicyGeneralUser />
+    </Route>
+    <Route exact path="/frequently_asked_questions">
+      <FrequentlyAskedQuestionsGeneral />
     </Route>
   </Switch>
 </Router>

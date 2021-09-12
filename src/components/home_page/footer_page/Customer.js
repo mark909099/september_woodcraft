@@ -50,7 +50,7 @@ const classes = useStyles();
 <Grid item xs={12}><Typography className={classes.header}>Customer</Typography></Grid> 
 <Grid item xs={12}><Button disableRipple='true' href="/terms_of_use" className={classes.btn} disableRipple='true'>Terms of use</Button></Grid>
 <Grid item xs={12}><Button disableRipple='true' href="/privacy_policy" className={classes.btn}>Privacy policy</Button></Grid>
-<Grid item xs={12}><Button disableRipple='true' className={classes.btn}>FAQ</Button></Grid>           
+<Grid item xs={12}><Button disableRipple='true' href="/frequently_asked_questions" className={classes.btn}>FAQ</Button></Grid>           
 </Grid>             
 </div>
     )

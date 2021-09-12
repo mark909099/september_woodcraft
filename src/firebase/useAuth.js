@@ -6,10 +6,12 @@ import {
   sendSignInLinkToEmail,
   signInWithEmailLink,
   GoogleAuthProvider,
+  FacebookAuthProvider,
   signInWithRedirect,
   updateProfile,
   signOut,
   onAuthStateChanged,
+  deleteUser
 } from "firebase/auth";
 
 
@@ -91,16 +93,29 @@ const signGoogle = () => {
 }
 
 
-const updateUserName = () => {
-  updateProfile(auth.currentUser, {
-    displayName: "rabbbbbit"
-  }).then(() => {
-    // Profile updated!
+const provider2 = new FacebookAuthProvider();
+const signFacebook = () => {
+  signInWithRedirect(auth, provider2)
+  .then((result) => {
+    // The signed-in user info.
+    const user = result.user;
+
+    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+    const credential = FacebookAuthProvider.credentialFromResult(result);
+    const accessToken = credential.accessToken;
+
     // ...
-  }).catch((error) => {
-    // An error occurred
+  })
+  .catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    const email = error.email;
+    // The AuthCredential type that was used.
+    const credential = FacebookAuthProvider.credentialFromError(error);
+
     // ...
-    console.log((error))
   });
 }
 
@@ -112,6 +127,18 @@ const logout = () => {
     console.log(error)
     // An error happened.
   });
+}
+
+
+const deleteUser1 = () => {
+  const user = auth.currentUser;
+
+deleteUser(user).then(() => {
+  // User deleted.
+}).catch((error) => {
+  // An error ocurred
+  // ...
+});
 }
 
 useEffect(() => {
@@ -130,8 +157,9 @@ const values = {
   sendMagicLink,
   signMagicLink,
   signGoogle,
-  updateUserName,
-  logout
+  signFacebook,
+  logout,
+  deleteUser1
 }
 
 return (
