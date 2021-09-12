@@ -12,21 +12,24 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import { useAuth } from '../firebase/useAuth';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    
+  name: {
+    [theme.breakpoints.up('xs')]: {
+      fontSize:'0.7rem'
+    }
   },
 }));
 
 export default function ButtonAppBar() {
 const classes = useStyles();
-
+const { user } = useAuth();
 
   return (
-    <div className={classes.root}>
+    <div>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar className={classes.root}>
         <Grid
           container
           direction="row"
@@ -53,12 +56,15 @@ const classes = useStyles();
 
           <Grid item xs={8}></Grid>
 
+
           <Grid item xs={3}>
-            <Box display="flex" justifyContent="flex-end">
+          <Box display="flex" flexDirection="row" justifyContent="flex-end">
               <Button href='/cart' color="inherit"><ShoppingCartIcon /></Button>
-            
+              <Box display="flex" flexDirection="column" alignItems="center">
               <Button href='/profile' color="inherit"><AccountCircleIcon /></Button>
-            </Box>
+              <Typography className={classes.name} variant="body2">{user.displayName}</Typography>
+              </Box>
+              </Box>
             </Grid>
         
         </Grid>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, createContext} from 'react';
+import React, { useState } from 'react';
 import { useAuth } from '../../firebase/useAuth';
 import { useHistory } from 'react-router-dom';
 import {
@@ -6,7 +6,12 @@ import {
     Typography,
     Button,
     TextField,
-    CircularProgress
+    CircularProgress,
+    Box,
+    DialogContentText,
+    DialogContent,
+    DialogTitle,
+    Dialog,
      } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -24,23 +29,57 @@ import {
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
+import { errorPrefix } from '@firebase/util';
 
 const useStyles = makeStyles({
     root: {
-      
+      padding:'1rem'
     },
+    info: {
+      paddingTop:'0.2rem'
+    },
+    box_of_input: {
+      paddingTop:'1rem'
+    },
+    submit_button: {
+      marginLeft:'0.7rem'
+    },
+    dialog_header: {
+
+    },
+    dialog_text: {
+      color:'red',
+      textAlign:'center'
+    }
   });
 
 const auth = getAuth();
+
+
+const schema = yup.object().shape({
+  email: yup.string().email("not a valid email"),
+});
 
 export default function ProfileInfo() {
 const classes = useStyles();
 const { user } = useAuth();
 const history = useHistory();
-const { handleSubmit, control, formState: { errors } } = useForm();
-const [name, setName] = useState("");
+const { handleSubmit, control, formState:{ errors } } = useForm({
+  resolver: yupResolver(schema)
+ });
+
 const [loading, setLoading] = useState(false);
 const [loading2, setLoading2] = useState(false);
+const [open, setOpen] = useState(false);
+
+const handleClickOpen = () => {
+    setOpen(true);
+}
+
+const handleClose = () => {
+    setOpen(false);
+}
+
 
 const onSubmit = async (data) => {
   setLoading(true)
@@ -51,6 +90,10 @@ const onSubmit = async (data) => {
     window.location.reload();
   }).catch((error) => {
     console.log(error)
+    if (error.code === 'auth/requires-recent-login') {
+      setLoading2(false)
+      window.alert("You must relogin to change name")
+    }
   });
 }
 
@@ -60,8 +103,13 @@ const onSubmit1 = async (data) => {
     // Email updated!
     window.location.reload();
   }).catch((error) => {
-    // An error occurred
     console.log(error)
+    if (error.code === 'auth/requires-recent-login') {
+      setLoading2(false)
+      window.alert("You must relogin to change email")
+    }
+    // An error occurred
+
   });
 }
 
@@ -72,13 +120,12 @@ deleteUser(user).then(() => {
   // User deleted.
 }).catch((error) => {
   console.log(error)
+  if (error.code === 'auth/requires-recent-login') {
+    setLoading2(false)
+    window.alert("You must relogin to delete this account")
+  }
 });
 }
-
-// if (loading) {
-//   return <h1>Loading...</h1>
-// }
-
 
     return (
 <div className={classes.root}>
@@ -88,14 +135,15 @@ deleteUser(user).then(() => {
   justifyContent="center"
   alignItems="flex-start"
 >
-<Typography variant="h3">Profile</Typography>
-<Typography variant="body1">Name: {user.displayName}</Typography>
-<Typography variant="body1">Email: {user.email}</Typography>
+<Typography className={classes.info} variant="h3">Profile</Typography>
+<Typography className={classes.info} variant="h6">Name: {user.displayName? user.displayName : "Name not defined"}</Typography>
+<Typography className={classes.info} variant="h6">Email: {user.email? user.email : "Email not defined"}</Typography>
 
-</Grid>
+
 
 
 <form onSubmit={handleSubmit(onSubmit)}>
+<Box className={classes.box_of_input} display="flex" flexDirection="row" alignItems="flex-end">
 <Controller
         name="name"
         control={control}
@@ -105,11 +153,15 @@ deleteUser(user).then(() => {
         InputProps={{className: classes.form_customer_text}}
          {...field} />}
       />
-
-<Button variant="outlined" className={classes.submit_button} onClick={handleSubmit(onSubmit)}>{loading? <CircularProgress /> : "Submit1"}</Button>
+<Typography className={classes.error} variant="body2">{errors.name?.message}</Typography>
+<Button variant="outlined" className={classes.submit_button} onClick={handleSubmit(onSubmit)}>{loading? <CircularProgress /> : "Update name"}</Button>
+</Box>
 </form>
 
+
+
 <form onSubmit={handleSubmit(onSubmit1)}>
+<Box className={classes.box_of_input} display="flex" flexDirection="row" alignItems="flex-end">
 <Controller
         name="email"
         control={control}
@@ -120,10 +172,28 @@ deleteUser(user).then(() => {
          {...field} />}
       />
 
-<Button variant="outlined" className={classes.submit_button} onClick={handleSubmit(onSubmit1)}>{loading2? <CircularProgress /> : "Submit1"}</Button>
+<Button variant="outlined" className={classes.submit_button} onClick={handleSubmit(onSubmit1)}>{loading2? <CircularProgress /> : "Update email"}</Button>
+</Box>
+<Typography className={classes.error} variant="body2">{errors.email?.message}</Typography>
 </form>
 
-<Button onClick={deleteUser1}>delete user</Button>
+<Button style={{marginTop:'1.5rem'}} variant="outlined" onClick={handleClickOpen}>Delete account</Button>
+
+</Grid>
+
+<Dialog
+open={open}
+onClose={handleClose}
+>
+<DialogTitle>{"Are you sure you want to delete this account?"}</DialogTitle>
+<DialogContent>
+          <DialogContentText className={classes.dialog_text}>
+            <Button variant="outlined" style={{margin:'0.5rem'}} onClick={handleClose}>No</Button>
+            <Button variant="outlined" style={{margin:'0.5rem'}} onClick={deleteUser1}>Yes, delete this account</Button>
+          </DialogContentText>
+        </DialogContent>
+</Dialog>
+
 </div>
     )
 }

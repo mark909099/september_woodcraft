@@ -12,7 +12,7 @@ import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles({
   list: {
-    width: '150px',
+    width: '175px',
   },
   paper: {
     backgroundColor:'#212121'
@@ -55,7 +55,7 @@ const logout1 = async () => {
 anchor={'left'}
 open={state}
 onClose={toggleDrawer(false)}
-transitionDuration={600}
+transitionDuration={800}
 classes={{ paper: classes.paper }}
 >
 <List className={classes.list}>
@@ -64,6 +64,7 @@ classes={{ paper: classes.paper }}
   <ListItem><Button href="/about" className={classes.item}>About</Button></ListItem>
   <ListItem><Button href="/contact" className={classes.item}>Contact</Button></ListItem>
   <ListItem className={classes.list_low}><Button href="/cart" className={classes.item}>My Cart</Button></ListItem>
+  <ListItem className={classes.item}><Button href="/my_orders" className={classes.item}>My Orders</Button></ListItem>
   <ListItem className={classes.list_low}><Button onClick={logout1} className={classes.item}>Logout</Button></ListItem>
 </List>
 </Drawer>

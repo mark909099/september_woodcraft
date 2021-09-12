@@ -36,7 +36,7 @@ const toggleDrawer = (open) => () => {
 anchor={'left'}
 open={state}
 onClose={toggleDrawer(false)}
-transitionDuration={600}
+transitionDuration={800}
 classes={{ paper: classes.paper }}
 >
 <List className={classes.list}>
