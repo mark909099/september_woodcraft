@@ -8,8 +8,6 @@ import {
   GoogleAuthProvider,
   FacebookAuthProvider,
   signInWithRedirect,
-  getRedirectResult,
-  updateProfile,
   signOut,
   onAuthStateChanged,
   deleteUser

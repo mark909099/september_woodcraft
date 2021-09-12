@@ -16,6 +16,7 @@ import {
     GoogleAuthProvider,
     signInWithRedirect,
     updateProfile,
+    updateEmail,
     deleteUser,
     signOut,
     onAuthStateChanged,
@@ -39,6 +40,7 @@ const history = useHistory();
 const { handleSubmit, control, formState: { errors } } = useForm();
 const [name, setName] = useState("");
 const [loading, setLoading] = useState(false);
+const [loading2, setLoading2] = useState(false);
 
 const onSubmit = async (data) => {
   setLoading(true)
@@ -52,6 +54,16 @@ const onSubmit = async (data) => {
   });
 }
 
+const onSubmit1 = async (data) => {
+  setLoading2(true)
+  updateEmail(auth.currentUser, data.email).then(() => {
+    // Email updated!
+    window.location.reload();
+  }).catch((error) => {
+    // An error occurred
+    console.log(error)
+  });
+}
 
 const deleteUser1 = () => {
   const user = auth.currentUser;
@@ -95,6 +107,20 @@ deleteUser(user).then(() => {
       />
 
 <Button variant="outlined" className={classes.submit_button} onClick={handleSubmit(onSubmit)}>{loading? <CircularProgress /> : "Submit1"}</Button>
+</form>
+
+<form onSubmit={handleSubmit(onSubmit1)}>
+<Controller
+        name="email"
+        control={control}
+        defaultValue=""
+        render={({ field }) => <TextField
+        label="Email"
+        InputProps={{className: classes.form_customer_text}}
+         {...field} />}
+      />
+
+<Button variant="outlined" className={classes.submit_button} onClick={handleSubmit(onSubmit1)}>{loading2? <CircularProgress /> : "Submit1"}</Button>
 </form>
 
 <Button onClick={deleteUser1}>delete user</Button>
