@@ -11,15 +11,13 @@ import {
 const useStyles = makeStyles((theme) => ({
     header: {
         textAlign: 'center',
-        paddingTop:'0.7rem',
+        paddingTop:'1.5rem',
         paddingBottom:'1.5rem',
-        textUnderlinePosition: 'under',
-        textDecoration: 'underline',
         [theme.breakpoints.up('xs')]: {
-            fontSize:'4rem'
+            fontSize:'1.4rem'
         },
         [theme.breakpoints.up('sm')]: {
-            fontSize:'5rem'
+            fontSize:'2.5rem'
         },
     },
 }))
@@ -36,7 +34,7 @@ history.push('/')
 :
 <div>
 <NavbarLogin />
-<Typography className={classes.header} variant="h2">Login</Typography>
+<Typography className={classes.header} variant="h2">Login to September Woodcraft</Typography>
 <LoginMethods />
 </div>
 }

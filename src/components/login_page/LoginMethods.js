@@ -11,13 +11,12 @@ export default function LoginMethods() {
 <div>
 <Grid
   container
-  direction="column"
+  direction="row"
   justifyContent="center"
   alignItems="center"
 >
-<Grid item><LoginPasswordlessTotal /></Grid>
-<Grid item><GoogleLogin /></Grid>
-<Grid item><FacebookLogin /></Grid>
+<Grid item style={{padding:'0.6rem'}}><GoogleLogin /></Grid>
+<Grid item style={{padding:'0.6rem'}}><FacebookLogin /></Grid>
 
 </Grid>
             
