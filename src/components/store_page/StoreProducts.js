@@ -360,10 +360,12 @@ await setDoc(doc(db, ("cart"), (user.uid + storeProduct.name)), data);
 open={open}
 onClose={handleClose}
 >
-<DialogTitle id="alert-dialog-title">{"This website is a demo project, it doesnt not include real partners."}</DialogTitle>
+<DialogTitle id="alert-dialog-title">{"You must be logged in to complete this action"}</DialogTitle>
 <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            But, keep browsing the website and enjoy!
+              <Box display="flex" justifyContent="center" alignItems="baseline">
+            Go to <Button style={{marginLeft:'0.4rem'}} variant="outlined" href="/login">Login page</Button>
+                </Box>
           </DialogContentText>
         </DialogContent>
 </Dialog>  

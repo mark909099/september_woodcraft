@@ -8,11 +8,13 @@ import {
   GoogleAuthProvider,
   FacebookAuthProvider,
   signInWithRedirect,
+  getRedirectResult,
   updateProfile,
   signOut,
   onAuthStateChanged,
   deleteUser
 } from "firebase/auth";
+import { useIsFocusVisible } from '@material-ui/core';
 
 
 const firebaseConfig = {
@@ -97,9 +99,23 @@ const provider2 = new FacebookAuthProvider();
 const signFacebook = () => {
   signInWithRedirect(auth, provider2)
   .then((result) => {
+    getRedirectResult(auth).then((result) => {
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      if (credential) {
+        // Accounts successfully linked.
+        const user = result.user;
+        // ...
+      }
+    }).catch((error) => {
+      // Handle Errors here.
+      // ...
+    });
+
+
+
+
     // The signed-in user info.
     const user = result.user;
-
     // This gives you a Facebook Access Token. You can use it to access the Facebook API.
     const credential = FacebookAuthProvider.credentialFromResult(result);
     const accessToken = credential.accessToken;
