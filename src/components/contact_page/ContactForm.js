@@ -15,12 +15,13 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import { useAuth } from '../../firebase/useAuth';
 import ContactFormHeader from './ContactFormHeader';
+import { uuid }  from 'uuidv4';
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-const { uuid } = require('uuidv4');
+
 const schema = yup.object().shape({
     title: yup.string().required("title is a required field"),
     message1: yup.string().required("message is a required field"),
@@ -98,7 +99,6 @@ const useStyles = makeStyles((theme) => ({
         fontFamily:'Verdana',
     }
 }))
-console.log(uuid());
 
 export default function ContactForm() {
  const { handleSubmit, control, formState:{ errors } } = useForm({

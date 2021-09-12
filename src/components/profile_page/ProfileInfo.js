@@ -5,7 +5,8 @@ import {
     Grid,
     Typography,
     Button,
-    Input
+    TextField,
+    CircularProgress
      } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -19,7 +20,9 @@ import {
     signOut,
     onAuthStateChanged,
   } from "firebase/auth";
-  import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from "yup";
 
 const useStyles = makeStyles({
     root: {
@@ -27,47 +30,42 @@ const useStyles = makeStyles({
     },
   });
 
-
-  const AuthContext = createContext();
-
-
-
-
-
-    const auth = getAuth();
-
-
-
-
-
-
+const auth = getAuth();
 
 export default function ProfileInfo() {
 const classes = useStyles();
-const { user, deleteUser1 } = useAuth();
+const { user } = useAuth();
 const history = useHistory();
-const { register, handleSubmit, control, formState: { errors } } = useForm();
-const [state, setState] = ('')
+const { handleSubmit, control, formState: { errors } } = useForm();
 const [name, setName] = useState("");
+const [loading, setLoading] = useState(false);
 
-updateProfile(auth.currentUser, {
-  displayName: name,
-}).then(() => {
-  // Profile updated!
-  // ...
-}).catch((error) => {
-  // An error occurred
-  // ...
-});
-
-
-const changeName = ({target}) => {
-  setName(target.value)
+const onSubmit = async (data) => {
+  setLoading(true)
+  updateProfile(auth.currentUser, {
+    displayName: data.name
+  }).then(() => {
+    // Profile updated!
+    window.location.reload();
+  }).catch((error) => {
+    console.log(error)
+  });
 }
-const showValue = () => console.log(name)
 
-  console.log(state)
 
+const deleteUser1 = () => {
+  const user = auth.currentUser;
+
+deleteUser(user).then(() => {
+  // User deleted.
+}).catch((error) => {
+  console.log(error)
+});
+}
+
+// if (loading) {
+//   return <h1>Loading...</h1>
+// }
 
 
     return (
@@ -83,9 +81,20 @@ const showValue = () => console.log(name)
 <Typography variant="body1">Email: {user.email}</Typography>
 
 </Grid>
-<form>
-<input type="text" value={name} onChange={changeName} />
-<button onClick={showValue} type="submit">change name</button>
+
+
+<form onSubmit={handleSubmit(onSubmit)}>
+<Controller
+        name="name"
+        control={control}
+        defaultValue=""
+        render={({ field }) => <TextField
+        label="Name"
+        InputProps={{className: classes.form_customer_text}}
+         {...field} />}
+      />
+
+<Button variant="outlined" className={classes.submit_button} onClick={handleSubmit(onSubmit)}>{loading? <CircularProgress /> : "Submit1"}</Button>
 </form>
 
 <Button onClick={deleteUser1}>delete user</Button>

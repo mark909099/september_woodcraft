@@ -17,7 +17,12 @@ import {
     Grid,
     Button,
     CardActionArea,
-    CircularProgress
+    CircularProgress,
+    DialogContentText,
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    Paper
     } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from "react-router-dom";
@@ -100,6 +105,15 @@ export default function StoreProducts() {
     const [showAllTablesByLowToHighPrice, setShowAllTablesByLowToHighPrice] = useState(false)
     const [showAllTablesByHighToLowPrice, setShowAllTablesByHighToLowPrice] = useState(false)
     const [showAllTablesByName, setShowAllTablesByName] = useState(false)
+    const [open, setOpen] = useState(false);
+    const handleClickOpen = () => {
+        setOpen(true);
+    }
+    
+    const handleClose = () => {
+        setOpen(false);
+    }
+
 
 const { user, app } = useAuth();
 const db = getFirestore(app);
@@ -331,10 +345,28 @@ await setDoc(doc(db, ("cart"), (user.uid + storeProduct.name)), data);
         </Box>
         <Typography variant="body2" className={classes.price}>Price: {storeProduct.price}</Typography>
         <Box className={classes.box_button}>
-        <Button onClick={async () => {history.push('/')}} className={classes.button}>Add to cart</Button>
+        <Button onClick={handleClickOpen} className={classes.button}>Add to cart</Button>
         </Box>
         </Box>
         </Box>
+<div>
+<Paper>
+<Dialog className={classes.bg_dialog}
+open={open}
+onClose={handleClose}
+>
+<DialogTitle id="alert-dialog-title">{"You must be logged in to complete this action"}</DialogTitle>
+<DialogContent>
+          <DialogContentText id="alert-dialog-description">
+              <Box display="flex" justifyContent="center" alignItems="baseline">
+            Go to <Button style={{marginLeft:'0.4rem'}} variant="outlined" href="/login">Login page</Button>
+                </Box>
+          </DialogContentText>
+        </DialogContent>
+</Dialog>  
+</Paper>      
+</div>
+
     </Grid>
 ))}      
 </Grid>   

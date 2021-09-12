@@ -99,20 +99,6 @@ const provider2 = new FacebookAuthProvider();
 const signFacebook = () => {
   signInWithRedirect(auth, provider2)
   .then((result) => {
-    getRedirectResult(auth).then((result) => {
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      if (credential) {
-        // Accounts successfully linked.
-        const user = result.user;
-        // ...
-      }
-    }).catch((error) => {
-      // Handle Errors here.
-      // ...
-    });
-
-
-
 
     // The signed-in user info.
     const user = result.user;

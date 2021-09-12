@@ -354,7 +354,7 @@ await setDoc(doc(db, ("cart"), (user.uid + storeProduct.name)), data);
         </Box>
         </Box>
         </Box>
-        <div>
+<div>
 <Paper>
 <Dialog className={classes.bg_dialog}
 open={open}
