@@ -89,9 +89,6 @@ const useStyles = makeStyles((theme) => ({
         width:'450px',
       },
     },
-    border_message: {
-      border:'1px solid black'
-    },
     error: {
       color:'red'
     },
@@ -194,7 +191,6 @@ const handleClose = (reason) => {
         control={control}
         defaultValue=""
         render={({ field }) => <TextField
-        // className={classes.border_message}
         multiline="true"
         label="Message *"
         minRows="15"

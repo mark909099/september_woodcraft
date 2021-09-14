@@ -24,6 +24,7 @@ import ContactGeneral from './components/contact_page/ContactGeneral';
 import TermsOfUseGeneral from './components/home_page/footer_page/TermsOfUseGeneral';
 import PrivacyPolicyGeneralUser from './components/home_page/footer_page/PrivacyPolicyGeneralUser';
 import FrequentlyAskedQuestionsGeneral from './components/home_page/footer_page/FrequentlyAskedQuestionsGeneral';
+import OrdersGeneral from './components/orders_page/OrdersGeneral';
 
 function App() {
   return (
@@ -76,6 +77,9 @@ function App() {
     </Route>
     <Route exact path="/frequently_asked_questions">
       <FrequentlyAskedQuestionsGeneral />
+    </Route>
+    <Route exact path="/my_orders">
+      <OrdersGeneral />
     </Route>
   </Switch>
 </Router>
