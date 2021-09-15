@@ -16,20 +16,13 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import {
     getAuth,
-    sendSignInLinkToEmail,
-    signInWithEmailLink,
-    GoogleAuthProvider,
-    signInWithRedirect,
     updateProfile,
     updateEmail,
     deleteUser,
-    signOut,
-    onAuthStateChanged,
   } from "firebase/auth";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
-import { errorPrefix } from '@firebase/util';
 
 const useStyles = makeStyles({
     root: {

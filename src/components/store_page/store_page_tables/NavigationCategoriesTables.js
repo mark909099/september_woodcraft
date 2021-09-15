@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
-    Typography,
     Button,
     Grid,
     } from '@material-ui/core';

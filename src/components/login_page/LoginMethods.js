@@ -1,5 +1,4 @@
 import React from 'react';
-import LoginPasswordlessTotal from './LoginPasswordlessTotal';
 import {
     Grid,
   } from '@material-ui/core';

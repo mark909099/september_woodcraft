@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import StoreClosets from './StoreClosets';
 import NavbarLogin from './../../NavbarLogin';
 import NavbarLogout from './../../NavbarLogout';

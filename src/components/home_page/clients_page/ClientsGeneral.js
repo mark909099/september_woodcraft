@@ -2,10 +2,8 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
     Typography,
-    Grid,
     Box,
 } from '@material-ui/core';
-import { Fade } from 'react-reveal';
 import HomeClient from './HomeClient';
 import BusinessClient from './BusinessClient';
 

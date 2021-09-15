@@ -4,8 +4,6 @@ import {
     Grid,
     Typography,
     Box,
-    CardMedia,
-    Divider,
     Button
 } from '@material-ui/core';
 import { Fade } from 'react-reveal';

@@ -1,12 +1,5 @@
 import React, { useState } from 'react';
 import {
-    CardMedia,
-    Typography,
-    Box,
-    Grid,
-    Button,
-    CardActionArea,
-    CircularProgress,
     DialogContentText,
     Dialog,
     DialogTitle,
@@ -16,9 +9,6 @@ import {
 
 export default function StoreProductsDialog() {
 const [open, setOpen] = useState(false);
-const handleClickOpen = () => {
-    setOpen(true);
-}
 
 const handleClose = () => {
     setOpen(false);

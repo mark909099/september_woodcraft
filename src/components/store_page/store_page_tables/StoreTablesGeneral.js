@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import StoreTables from './StoreTables';
 import NavbarLogin from './../../NavbarLogin';
 import NavbarLogout from './../../NavbarLogout';

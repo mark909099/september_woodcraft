@@ -1,12 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useAuth } from '../../firebase/useAuth';
 import {
-    collection,
-    where,
-    orderBy,
     getFirestore,
-    onSnapshot,
-    query,
      } from "firebase/firestore";
 import {
     Typography,
@@ -16,6 +11,7 @@ import {
     CircularProgress
     } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+
 
 const useStyles = makeStyles((theme) => ({
     button: {
@@ -32,9 +28,9 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
+
 export default function SortAllCategories() {
 const classes = useStyles();
-const [storeProducts, setStoreProducts] = useState([]);
 const { user, app } = useAuth();
 const [loading, setLoading] = useState(false);
 

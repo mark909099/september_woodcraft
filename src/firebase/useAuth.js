@@ -12,7 +12,6 @@ import {
   onAuthStateChanged,
   deleteUser
 } from "firebase/auth";
-import { useIsFocusVisible } from '@material-ui/core';
 
 
 const firebaseConfig = {
@@ -37,7 +36,6 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isAuthenticating, setIsAuthenticating] = useState(true);
   const auth = getAuth();
-  const history = useHistory();
   const actionCodeSettings = {
     url:"http://localhost:3000/confirm",
     handleCodeInApp: true,

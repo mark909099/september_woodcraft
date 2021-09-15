@@ -2,9 +2,6 @@ import React from 'react';
 import {
     Grid,
     Typography,
-    Box,
-    CardMedia,
-    Divider,
     Button,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';

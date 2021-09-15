@@ -26,7 +26,7 @@ import {
     Snackbar
     } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { useHistory } from "react-router-dom";
+
 
 const useStyles = makeStyles((theme) => ({
     header: {
@@ -102,7 +102,6 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function StoreProducts() {
-const history = useHistory();
 const classes = useStyles();
 const [storeProducts, setStoreProducts] = useState([]);
 const [loading, setLoading] = useState(false);
@@ -196,9 +195,6 @@ const getAllStoreTables = async () => {
 }
 
 
-
-
-
     return (
 <div>
 {user?
@@ -238,8 +234,6 @@ const getAllStoreTables = async () => {
 
 </Grid>
 </div>
-
-
 
 
 <Grid
@@ -342,8 +336,6 @@ setNameOfSnack(`${storeProduct.name}`)
 </div>
 
 
-
-
 <Grid
     container
     direction="row"
@@ -403,10 +395,6 @@ onClose={handleClose}
 }
 
 
-
-
-
-  
 </div>
 
     )

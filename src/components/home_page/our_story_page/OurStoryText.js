@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { 
     Typography,
     Grid,
-
     } from '@material-ui/core';
 import { Fade } from 'react-reveal';
 

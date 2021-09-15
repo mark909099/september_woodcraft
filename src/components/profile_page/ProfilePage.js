@@ -4,7 +4,6 @@ import { useHistory } from 'react-router-dom';
 import ProfileInfo from './ProfileInfo';
 import { makeStyles } from '@material-ui/core/styles';
 import NavbarLogout from './../NavbarLogout';
-import ProfileInfoStructure from './ProfileInfoStructure';
 
 const useStyles = makeStyles({
     list: {
@@ -31,7 +30,7 @@ const history = useHistory();
 {user?
 <>
 <NavbarLogout />
-<ProfileInfoStructure />
+<ProfileInfo />
 </>
 :
 history.push('/')

@@ -101,7 +101,6 @@ const classes = useStyles();
 </Grid> 
 
 
-
 <Grid item xs={12} sm={6}>
 <Fade right duration={2500}>
 <Box display="flex" justifyContent="center">

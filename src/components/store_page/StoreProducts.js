@@ -25,7 +25,6 @@ import {
     Snackbar,
     } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { useHistory } from "react-router-dom";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -102,7 +101,6 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function StoreProducts() {
-const history = useHistory();
 const classes = useStyles();
 const [storeProducts, setStoreProducts] = useState([]);
 const [loading, setLoading] = useState(false);
@@ -198,7 +196,6 @@ const getAllStoreProducts = async () => {
     })
 }
 }
-
 
 
     return (
@@ -303,9 +300,8 @@ setNameOfSnack(`${storeProduct.name}`)
 </Grid>     
 </div>
 
-
-
 :
+
 <div>
 
 <div style={{paddingTop:'0.5rem'}}>
@@ -342,8 +338,6 @@ setNameOfSnack(`${storeProduct.name}`)
 
 </Grid>
 </div>
-
-
 
 
 <Grid

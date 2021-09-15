@@ -1,13 +1,6 @@
 import React from 'react';
 import { useAuth } from '../../firebase/useAuth';
 import { useHistory } from 'react-router-dom';
-import {
-    Grid, 
-    Button,
-    Typography,
-    Box,
-    CircularProgress
-   } from '@material-ui/core';
 import OrdersList from './OrdersList';
 import NavbarLogout from '../NavbarLogout';
 import OrdersHeader from './OrdersHeader';

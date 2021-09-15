@@ -14,7 +14,6 @@ import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import { useAuth } from '../../firebase/useAuth';
-import ContactFormHeader from './ContactFormHeader';
 import { uuid }  from 'uuidv4';
 
 function Alert(props) {

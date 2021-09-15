@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useAuth } from '../../firebase/useAuth';
 import { FacebookLoginButton } from "react-social-login-buttons";
 

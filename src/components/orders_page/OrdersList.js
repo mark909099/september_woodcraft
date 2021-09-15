@@ -1,29 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../firebase/useAuth';
 import {
-    Grid, 
-    Button,
     Typography,
-    Box,
     CircularProgress
    } from '@material-ui/core';
    import {
     collection,
     query,
-     where,
-     orderBy,
-    doc,
-    getDocs,
-    setDoc,
-    deleteDoc,
+    where,
+    orderBy,
     getFirestore,
     onSnapshot,
-    increment,
-    updateDoc,
-    deleteField
      } from "firebase/firestore";
 import { makeStyles } from '@material-ui/core/styles';
-import { useHistory } from 'react-router-dom';
 import './images.css';
 
 
@@ -34,7 +23,26 @@ const useStyles = makeStyles((theme) => ({
         padding:'1rem',
         borderBottom:'1px solid black',
         paddingBottom:'1rem',
-    }
+    },
+    header: {
+        [theme.breakpoints.up('xs')]: {
+            fontSize:'1.8rem'
+        },
+        [theme.breakpoints.up('sm')]: {
+            fontSize:'2.5rem'
+        },
+        [theme.breakpoints.up('md')]: {
+            fontSize:'3rem'
+        },
+    },
+    text: {
+        [theme.breakpoints.up('xs')]: {
+            fontSize:'1rem'
+        },
+        [theme.breakpoints.up('sm')]: {
+            fontSize:'1.2rem'
+        },
+    },
 }))
 
 export default function OrdersList() {
@@ -75,12 +83,13 @@ if (loading) {
 <div className={classes.root}>
 {products.map((product) => (
     <div key={product.order_id} className={classes.single_order}>
-        <p>{product.name}</p>
+        <Typography className={classes.header}>{product.name}</Typography>
         <img className='image1' src={`${product.photo}`} />
-        <p>Quanitity: {product.qty}</p>
-        <p>Delivery method: {product.delivery_method}</p>
-        <p>Status: {orderStatus}</p>
-        <p>Order date: {product.time_day}/{product.time_month}/{product.time_year}</p>
+        <Typography className={classes.text}>Quantity: {product.qty}</Typography>
+        <Typography className={classes.text}>Price: {product.price*product.qty}</Typography>
+        <Typography className={classes.text}>Delivery method: {product.delivery_method}</Typography>
+        <Typography className={classes.text}>Status: {orderStatus}</Typography>
+        <Typography className={classes.text}>Order date: {product.time_day}/{product.time_month}/{product.time_year}</Typography>
     </div>
 ))}
 

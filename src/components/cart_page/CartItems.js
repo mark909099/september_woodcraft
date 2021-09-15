@@ -192,8 +192,6 @@ useEffect(() => {
     q3() 
  }, []);
 
-
-
  const q3 = async () => {
     setLoading(true);
     const q = query(collection(db, "cart"), where("id_u", "==", user.uid));
@@ -210,11 +208,11 @@ useEffect(() => {
 
 let sum1 = products.map((product) => 
     Math.ceil(product.price * product.qty)
-    
 ).reduce((a,b) => a + b, 0);
 
 let sum2 = Math.ceil(sum1*1.1);
 let sum3 = Math.ceil(sum1*1.4);
+
 
 useEffect(() => {
   Show();
@@ -242,7 +240,6 @@ const ShowPrice = () => {
 }
 
 
-
 const ShowDeliveryMethodInfo = () => {
   if (showPickup) {
     return "Store pick up"
@@ -252,6 +249,7 @@ const ShowDeliveryMethodInfo = () => {
     return "Express delivery"
   }
 }
+
 
 const ShowDeliveryMethod = () => {
     
@@ -290,7 +288,6 @@ if (loading) {
     return (
 <div className={classes.list_items}>
 
-
 {/* start of grid */}
 <Grid
   container
@@ -302,34 +299,30 @@ if (loading) {
 <Grid item xs={0} md={1} lg={3} xl={4}></Grid>
 {/* grid visible item 1: left side of screen */}
 <Grid item xs={6} md={5} lg={3} xl={2}>
-    <Box style={{paddingLeft:'1rem'}} display="flex" flexDirection="column" alignItems="flex-start">
-<Typography variant="h4">My Items</Typography>
+<Box style={{paddingLeft:'1rem'}} display="flex" flexDirection="column" alignItems="flex-start">
+  <Typography variant="h4">My Items</Typography>
 {products.map((product) => (
     <div key={product.name}>
         <Typography className={classes.name} variant="h5">{product.name}</Typography>
         <img className='image' src={`${product.photo}`} />
         <Typography className={classes.price} variant="body1">Price: {product.price}</Typography>
         <Typography className={classes.quantity} variant="body1">quantity: {product.qty}</Typography>
-        <button className="button1" onClick={async () => {
-
+<button className="button1" onClick={async () => {
 await setDoc(doc(db, "cart", (user.uid + product.name)), {
     qty: increment(1)
   }, {merge:true});
-
         }}>
             +
-        </button>
+</button>
 
-        <button className="button2" onClick={async () => {
+<button className="button2" onClick={async () => {
 const sfDocRef = doc(db, "cart", (user.uid+product.name));
 try {
-
     await runTransaction(db, async (transaction) => {
     const sfDoc = await transaction.get(sfDocRef);
     if (!sfDoc.exists()) {
       throw "Document doesnt exist";
     }
-
     const newNumber = sfDoc.data().qty - 1;
     if (newNumber > 0) {
       transaction.update(sfDocRef, {qty: newNumber});
@@ -341,32 +334,22 @@ try {
 } catch(e) {
   console.log(e)
 }
-
-
-
       }}>
           -
-      </button>
-
-
+</button>
 
 <div className={classes.delete_button_box}>
         <Button size="small" className={classes.delete_button} variant="outlined" onClick={async () => {
-
 await deleteDoc(doc(db, "cart", (user.uid + product.name)));
-
         }}>Delete</Button>
 </div>
-
 </div>
-
 
 ))}
 </Box>
 </Grid>
-{/* end of grid item 1 */}
+{/* end of visible grid item 1 */}
 
-{/* ----------------------------------- */}
 
 {/* grid visible item 2: right side of screen */}
 <Grid item xs={6} md={4}>
@@ -410,7 +393,6 @@ try {
       await setDoc(doc(db, ("purchase"), (user.uid + doc1.data().name + d)), (doc1.data()));
     }
 
-
     const Ref1 = doc(db, "purchase", (user.uid + doc1.data().name + d))  
     const instertAdditionalData = async () => {
       await updateDoc(Ref1, {
@@ -424,7 +406,6 @@ try {
       })
     }
 
-  
     const deleteCurrentCart = async () => {
       await deleteDoc(doc(db, "cart", user.uid + doc1.data().name))
     }
@@ -444,7 +425,7 @@ history.push('/complete_purchase')
 
 </Box>
 </Grid>
-{/* end of grid item 2 */}
+{/* end of visible grid item 2 */}
 
 
 <Grid item xs={0} md={2}></Grid>

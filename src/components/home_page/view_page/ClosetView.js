@@ -62,7 +62,6 @@ const classes = useStyles();
 </Fade>
 </Grid>
 
-
 <Grid item xs={10} sm={5} className={classes.item_text}>
 <Box>
 <Fade duration={4000}>
@@ -114,13 +113,9 @@ const classes = useStyles();
 </Grid>
 
 
-
 </Grid> 
 <Divider className={classes.divider} />
-</Hidden>
-
-
-         
+</Hidden>      
 </div>
     )
 }

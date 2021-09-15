@@ -119,9 +119,7 @@ const classes = useStyles();
 </Grid> 
 </Hidden>
 
-
 <Divider className={classes.divider}
-
 />
 </div>
     )

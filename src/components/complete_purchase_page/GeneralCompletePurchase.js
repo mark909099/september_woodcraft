@@ -1,12 +1,9 @@
 import React from 'react';
 import { useAuth } from './../../firebase/useAuth';
-import {
-    Grid, 
+import { 
     Button,
     Typography,
     Box,
-    CircularProgress,
-    CardMedia
    } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
