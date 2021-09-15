@@ -21,11 +21,12 @@ import {
     Dialog,
     DialogTitle,
     DialogContent,
-    Paper
+    Paper,
+    Snackbar,
     } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from "react-router-dom";
-import StoreProductsDialog from './StoreProductsDialog';
+
 
 const useStyles = makeStyles((theme) => ({
     header: {
@@ -84,8 +85,19 @@ const useStyles = makeStyles((theme) => ({
     },
     bg_dialog: {
         backgroundImage: 'url(/images/dialog_bg2.jpg)',
-        backgroundSize:'cover'
-    }
+        backgroundSize:'cover',
+    },
+    box_snack: {
+        borderRadius:'15%',
+        backgroundColor:'#efebe9'
+    },
+    outline_snack: {
+        paddingLeft:'1.2rem',
+        paddingRight:'1.2rem',
+        textAlign:'center',
+        color:'black',
+        fontFamily:'Arial'
+},
 }))
 
 
@@ -99,6 +111,9 @@ const [showAllProductsByLowToHighPrice, setShowAllProductsByLowToHighPrice] = us
 const [showAllProductsByHighToLowPrice, setShowAllProductsByHighToLowPrice] = useState(false)
 const [showAllProductsByName, setShowAllProductsByName] = useState(false)
 const [open, setOpen] = useState(false);
+const [openSnack, setOpenSnack] = useState(false);
+const [nameOfSnack, setNameOfSnack] = useState('');
+
 const handleClickOpen = () => {
     setOpen(true);
 }
@@ -106,6 +121,17 @@ const handleClickOpen = () => {
 const handleClose = () => {
     setOpen(false);
 }
+
+
+const handleCloseSnack = (reason) => {
+    if (reason === 'clickaway') {
+        return;
+    }
+
+    setOpenSnack(false);
+}
+
+
 
 
 const { user, app } = useAuth();
@@ -116,8 +142,6 @@ useEffect(() => {
     getAllStoreProducts()
 }, [showAllProducts, showAllProductsByLowToHighPrice, showAllProductsByHighToLowPrice, showAllProductsByName]);
 
-
-
 if (loading) {
     return (
        <div style={{display:'flex', justifyContent:'center', paddingTop:'10rem'}}>
@@ -125,7 +149,6 @@ if (loading) {
        </div> 
     )
 };
-
 
 
 const getAllStoreProducts = async () => {
@@ -218,17 +241,14 @@ const getAllStoreProducts = async () => {
 </Grid>
 </div>
 
-
-
-
 <Grid
     container
     direction="row"
     justifyContent="center"
     alignItems="center"
   >
+      
 {storeProducts.map((storeProduct) => (
-    
       <Grid className={classes.grid_container} key={storeProduct.id} item xs={6} sm={6} md={4} lg={3}>
         <Box className={classes.item}>
         <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
@@ -262,20 +282,26 @@ const data= {
     id_u : user.uid
 }
 await setDoc(doc(db, ("cart"), (user.uid + storeProduct.name)), data);
+setOpenSnack(true);
+setNameOfSnack(`${storeProduct.name}`)
         }}>Add to cart</Button>
         </Box>
         </Box>
         </Box>
+
+<div>
+<Snackbar open={openSnack} autoHideDuration={3000} onClose={handleCloseSnack}>
+    <Paper className={classes.box_snack}>
+    <Typography className={classes.outline_snack} variant="h6">{nameOfSnack} added to cart</Typography>
+    </Paper>
+</Snackbar>
+</div>
+ 
+        
     </Grid>
 ))}      
 </Grid>     
 </div>
-
-
-
-
-
-
 
 
 
@@ -355,6 +381,7 @@ await setDoc(doc(db, ("cart"), (user.uid + storeProduct.name)), data);
         </Box>
         </Box>
 <div>
+
 <Paper>
 <Dialog className={classes.bg_dialog}
 open={open}
@@ -369,7 +396,8 @@ onClose={handleClose}
           </DialogContentText>
         </DialogContent>
 </Dialog>  
-</Paper>      
+</Paper> 
+    
 </div>
     </Grid>
 

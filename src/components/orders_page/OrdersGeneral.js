@@ -10,6 +10,7 @@ import {
    } from '@material-ui/core';
 import OrdersList from './OrdersList';
 import NavbarLogout from '../NavbarLogout';
+import OrdersHeader from './OrdersHeader';
 
 export default function OrdersGeneral() {
 const history = useHistory();
@@ -20,6 +21,7 @@ const { user } = useAuth();
 {user?
 <div>
 <NavbarLogout />
+<OrdersHeader />
 <OrdersList />   
 </div>
 :

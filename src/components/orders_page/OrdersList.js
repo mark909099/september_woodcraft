@@ -11,6 +11,7 @@ import {
     collection,
     query,
      where,
+     orderBy,
     doc,
     getDocs,
     setDoc,
@@ -23,10 +24,16 @@ import {
      } from "firebase/firestore";
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
+import './images.css';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
-
+    },
+    single_order: {
+        padding:'1rem',
+        borderBottom:'1px solid black',
+        paddingBottom:'1rem',
     }
 }))
 
@@ -36,7 +43,7 @@ const { user, app } = useAuth();
 const db = getFirestore(app);
 const [products, setProducts] = useState([]);
 const [loading, setLoading] = useState(false);
-
+const [orderStatus, setOrderStatus] = useState('in progress')
 
 useEffect(() => {
     purchasedItems();
@@ -44,7 +51,7 @@ useEffect(() => {
 
 const purchasedItems = async () => {
     setLoading(true);
-    const q = query(collection(db, "purchase"), where("id_u", "==", user.uid));
+    const q = query(collection(db, "purchase"), where("id_u", "==", user.uid), orderBy("time", "desc"));
     onSnapshot(q, (querySnapshot) => {
         const items = [];
     querySnapshot.forEach((doc1) => {
@@ -56,15 +63,24 @@ const purchasedItems = async () => {
 }
 
 if (loading) {
-    return <CircularProgress />
+    return(
+        <div style={{display:"flex", justifyContent:"center"}}>
+<CircularProgress />
+        </div>
+    )
+     
 }
 
     return (
-<div>
+<div className={classes.root}>
 {products.map((product) => (
-    <div key={product.name}>
+    <div key={product.order_id} className={classes.single_order}>
         <p>{product.name}</p>
-        <p>{product.desc}</p>
+        <img className='image1' src={`${product.photo}`} />
+        <p>Quanitity: {product.qty}</p>
+        <p>Delivery method: {product.delivery_method}</p>
+        <p>Status: {orderStatus}</p>
+        <p>Order date: {product.time_day}/{product.time_month}/{product.time_year}</p>
     </div>
 ))}
 

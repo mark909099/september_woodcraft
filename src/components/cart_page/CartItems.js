@@ -139,14 +139,15 @@ const useStyles = makeStyles((theme) => ({
       },
     },
     btn_delivery: {
+      fontWeight:'700',
       [theme.breakpoints.up('xs')]: {
-        fontSize:'0.7rem'
+        fontSize:'0.5rem'
       },
       [theme.breakpoints.up('sm')]: {
-        fontSize:'0.9rem'
+        fontSize:'0.7rem'
       },
       [theme.breakpoints.up('md')]: {
-        fontSize:'1.1rem'
+        fontSize:'0.9rem'
       },
     },
     total_price: {
@@ -168,6 +169,9 @@ const useStyles = makeStyles((theme) => ({
         marginTop:'1rem',
         width:'140px',
         height:'45px'
+      },
+      list_items: {
+        paddingBottom:'4rem'
       }
 }))
 
@@ -181,11 +185,14 @@ const [loading, setLoading] = useState(false);
 const [showPickup, setShowPickup] = useState(true);
 const [showHomeDelivery, setShowHomeDelivery] = useState(false);
 const [showExpressDelivery, setShowExpressDelivery] = useState(false);
+const [emptyCart, setEmptyCart] = useState();
 const db = getFirestore(app);
 
 useEffect(() => {
     q3() 
  }, []);
+
+
 
  const q3 = async () => {
     setLoading(true);
@@ -204,10 +211,23 @@ useEffect(() => {
 let sum1 = products.map((product) => 
     Math.ceil(product.price * product.qty)
     
-).reduce((a,b) => a + b, 0)
+).reduce((a,b) => a + b, 0);
 
 let sum2 = Math.ceil(sum1*1.1);
 let sum3 = Math.ceil(sum1*1.4);
+
+useEffect(() => {
+  Show();
+}, [sum1]);
+
+
+const Show = () => {
+  if (sum1>0) {
+    setEmptyCart(false)
+  } else {
+    setEmptyCart(true)
+  }
+}
 
 const ShowPrice = () => {
     
@@ -220,6 +240,8 @@ const ShowPrice = () => {
     }
 
 }
+
+
 
 const ShowDeliveryMethodInfo = () => {
   if (showPickup) {
@@ -259,8 +281,14 @@ const ShowDeliveryMethod = () => {
 }
 
 
+if (loading) {
+  return <CircularProgress />
+}
+
+
+
     return (
-<div>
+<div className={classes.list_items}>
 
 
 {/* start of grid */}
@@ -270,6 +298,7 @@ const ShowDeliveryMethod = () => {
   justifyContent="center"
   alignItems="flex-start"
 >
+
 <Grid item xs={0} md={1} lg={3} xl={4}></Grid>
 {/* grid visible item 1: left side of screen */}
 <Grid item xs={6} md={5} lg={3} xl={2}>
@@ -278,7 +307,7 @@ const ShowDeliveryMethod = () => {
 {products.map((product) => (
     <div key={product.name}>
         <Typography className={classes.name} variant="h5">{product.name}</Typography>
-        <img className='image' onClick={()=> window.open(product.photo)} src={`${product.photo}`} />
+        <img className='image' src={`${product.photo}`} />
         <Typography className={classes.price} variant="body1">Price: {product.price}</Typography>
         <Typography className={classes.quantity} variant="body1">quantity: {product.qty}</Typography>
         <button className="button1" onClick={async () => {
@@ -364,10 +393,14 @@ await deleteDoc(doc(db, "cart", (user.uid + product.name)));
 </Box>
 <ShowDeliveryMethod />
 <Typography className={classes.total_price}>Total price: <ShowPrice /></Typography>
-{/* {products.map((product) => ( */}
-<Button className={classes.purchase_btn} variant="outlined" onClick={async () => {
+
+<Button className={classes.purchase_btn} disabled={emptyCart} variant="outlined" onClick={async () => {
 setLoading(true);
 const d = new Date().toString();
+const d_year = new Date().getFullYear().toString();
+const d_month_primitive = new Date().getMonth()+1;
+const d_month = d_month_primitive.toString();
+const d_day = new Date().getDate().toString();
 try {
   const q = query(collection(db, "cart"), where("id_u", "==", user.uid));
   const querySnapshot = await getDocs(q);
@@ -384,7 +417,10 @@ try {
         total_price: ShowPrice(),
         delivery_method: ShowDeliveryMethodInfo(),
         order_id: uuidv4(),
-        time: d
+        time: d,
+        time_year: d_year,
+        time_month: (d_month),
+        time_day: d_day
       })
     }
 
@@ -401,16 +437,17 @@ try {
   console.log(err)
 }
 
+history.push('/complete_purchase')
+
 
 }}>Purchase</Button>
-{/* ))} */}
+
 </Box>
 </Grid>
 {/* end of grid item 2 */}
 
 
 <Grid item xs={0} md={2}></Grid>
-
 
 </Grid>
 {/* end of grid */}

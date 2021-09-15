@@ -22,7 +22,8 @@ import {
     Dialog,
     DialogTitle,
     DialogContent,
-    Paper
+    Paper,
+    Snackbar,
     } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from "react-router-dom";
@@ -82,38 +83,52 @@ const useStyles = makeStyles((theme) => ({
             width:'150px',   
         },
     },
-    button_clicked: {
-        border:'1px solid black',
-        fontFamily:'Tahoma',
-        color:'red',
-        [theme.breakpoints.up('xs')]: {
-            width:'100px',   
-        },
-        [theme.breakpoints.up('sm')]: {
-            width:'150px',   
-        },
-    }
+    bg_dialog: {
+        backgroundImage: 'url(/images/dialog_bg2.jpg)',
+        backgroundSize:'cover',
+    },
+    box_snack: {
+        borderRadius:'15%',
+        backgroundColor:'#efebe9'
+    },
+    outline_snack: {
+        paddingLeft:'1.2rem',
+        paddingRight:'1.2rem',
+        textAlign:'center',
+        color:'black',
+        fontFamily:'Arial'
+},
 }))
 
 
 export default function StoreProducts() {
-    const history = useHistory();
-    const classes = useStyles();
-    const [storeProducts, setStoreProducts] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [showAllClosets, setShowAllClosets] = useState(true)
-    const [showAllClosetsByLowToHighPrice, setShowAllClosetsByLowToHighPrice] = useState(false)
-    const [showAllClosetsByHighToLowPrice, setShowAllClosetsByHighToLowPrice] = useState(false)
-    const [showAllClosetsByName, setShowAllClosetsByName] = useState(false)
-    const [open, setOpen] = useState(false);
-    const handleClickOpen = () => {
-        setOpen(true);
-    }
-    
-    const handleClose = () => {
-        setOpen(false);
+const history = useHistory();
+const classes = useStyles();
+const [storeProducts, setStoreProducts] = useState([]);
+const [loading, setLoading] = useState(false);
+const [showAllClosets, setShowAllClosets] = useState(true)
+const [showAllClosetsByLowToHighPrice, setShowAllClosetsByLowToHighPrice] = useState(false)
+const [showAllClosetsByHighToLowPrice, setShowAllClosetsByHighToLowPrice] = useState(false)
+const [showAllClosetsByName, setShowAllClosetsByName] = useState(false)
+const [open, setOpen] = useState(false);
+const [openSnack, setOpenSnack] = useState(false);
+const [nameOfSnack, setNameOfSnack] = useState('');
+
+const handleClickOpen = () => {
+    setOpen(true);
+}
+
+const handleClose = () => {
+    setOpen(false);
+}
+
+const handleCloseSnack = (reason) => {
+    if (reason === 'clickaway') {
+        return;
     }
 
+    setOpenSnack(false);
+}
 
 const { user, app } = useAuth();
 const db = getFirestore(app);
@@ -256,7 +271,7 @@ const getAllStoreClosets = async () => {
         </Box>
         <Typography variant="body2" className={classes.price}>Price: {storeProduct.price}</Typography>
         <Box className={classes.box_button}>
-        <Button onClick={async () => {
+        <Button className={classes.button} onClick={async () => {
 
 const data= {
     name: storeProduct.name,
@@ -267,11 +282,22 @@ const data= {
     id_u : user.uid
 }
 await setDoc(doc(db, ("cart"), (user.uid + storeProduct.name)), data);
+setOpenSnack(true);
+setNameOfSnack(`${storeProduct.name}`)
+        }}>Add to cart</Button>
+        </Box>
+        </Box>
+        </Box>
 
-        }} className={classes.button}>Add to cart</Button>
-        </Box>
-        </Box>
-        </Box>
+<div>
+<Snackbar open={openSnack} autoHideDuration={3000} onClose={handleCloseSnack}>
+    <Paper className={classes.box_snack}>
+    <Typography className={classes.outline_snack} variant="h6">{nameOfSnack} added to cart</Typography>
+    </Paper>
+</Snackbar>
+</div>
+
+
     </Grid>
 ))}      
 </Grid>   

@@ -25,6 +25,7 @@ import TermsOfUseGeneral from './components/home_page/footer_page/TermsOfUseGene
 import PrivacyPolicyGeneralUser from './components/home_page/footer_page/PrivacyPolicyGeneralUser';
 import FrequentlyAskedQuestionsGeneral from './components/home_page/footer_page/FrequentlyAskedQuestionsGeneral';
 import OrdersGeneral from './components/orders_page/OrdersGeneral';
+import GeneralCompletePurchase from './components/complete_purchase_page/GeneralCompletePurchase';
 
 function App() {
   return (
@@ -80,6 +81,9 @@ function App() {
     </Route>
     <Route exact path="/my_orders">
       <OrdersGeneral />
+    </Route>
+    <Route exact path="/complete_purchase">
+      <GeneralCompletePurchase />
     </Route>
   </Switch>
 </Router>
